@@ -1,12 +1,20 @@
 
 pack.png
-size: 128,64
+size: 1024,2048
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
+SaraFullSheet
+  rotate: false
+  xy: 2, 64
+  size: 832, 1344
+  split: 0, 263, 646, 568
+  orig: 832, 1344
+  offset: 0, 0
+  index: -1
 floor
   rotate: false
-  xy: 64, 42
+  xy: 836, 1388
   size: 50, 20
   orig: 50, 20
   offset: 0, 0

@@ -96,4 +96,11 @@ public class Player implements IScript {
     public void dispose() {
 
     }
+
+    public float getX(){
+        return tranfromComponent.x;
+    }
+    public float getY(){
+        return tranfromComponent.y;
+    }
 }
