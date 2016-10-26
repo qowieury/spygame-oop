@@ -14,38 +14,36 @@ import com.uwsoft.editor.renderer.SceneLoader;
 import com.uwsoft.editor.renderer.utils.ItemWrapper;
 
 public class Spy extends ApplicationAdapter {
-	SpriteBatch batch;
-	Texture img;
-	SceneLoader sceneLoader;
+    SpriteBatch batch;
+    Texture img;
+    SceneLoader sceneLoader;
 
-	private Player player;
-	private Viewport viewport;
-	private ItemWrapper root;
+    private Player player;
+    private Viewport viewport;
+    private ItemWrapper root;
 
-	@Override
-	public void create () {
-		viewport = new FitViewport(360,200);
-		sceneLoader = new SceneLoader();
-		sceneLoader.loadScene("MainScene",viewport);
+    @Override
+    public void create() {
+        viewport = new FitViewport(360, 200);
+        sceneLoader = new SceneLoader();
+        sceneLoader.loadScene("MainScene", viewport);
 
-		root = new ItemWrapper(sceneLoader.getRoot());
-
-
-		player = new Player(sceneLoader.world);
-		root.getChild("player").addScript(player);
-
-		//batch = new SpriteBatch();
-		//img = new Texture("badlogic.jpg");
-	}
-
-	@Override
-	public void render () {
-		Gdx.gl.glClearColor(1, 1, 0, 1);
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		sceneLoader.getEngine().update(Gdx.graphics.getDeltaTime());
+        root = new ItemWrapper(sceneLoader.getRoot());
 
 
+        player = new Player(sceneLoader.world);
+        root.getChild("player").addScript(player);
 
-		((OrthographicCamera)viewport.getCamera()).position.set(player.getX()+100, player.getY()+70, 0f);
-	}
+
+    }
+
+    @Override
+    public void render() {
+        Gdx.gl.glClearColor(1, 1, 0, 1);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        sceneLoader.getEngine().update(Gdx.graphics.getDeltaTime());
+
+
+        ((OrthographicCamera) viewport.getCamera()).position.set(player.getX() + 100, player.getY() + 70, 0f);
+    }
 }
