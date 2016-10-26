@@ -16,6 +16,7 @@ floor
   rotate: false
   xy: 836, 1388
   size: 50, 20
+  split: 20, 22, 0, 0
   orig: 50, 20
   offset: 0, 0
   index: -1

@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Plane;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.uwsoft.editor.renderer.SceneLoader;
@@ -30,7 +31,7 @@ public class Spy extends ApplicationAdapter {
 		root = new ItemWrapper(sceneLoader.getRoot());
 
 
-		player = new Player();
+		player = new Player(sceneLoader.world);
 		root.getChild("player").addScript(player);
 
 		//batch = new SpriteBatch();
@@ -42,6 +43,7 @@ public class Spy extends ApplicationAdapter {
 		Gdx.gl.glClearColor(1, 1, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		sceneLoader.getEngine().update(Gdx.graphics.getDeltaTime());
+
 
 
 		((OrthographicCamera)viewport.getCamera()).position.set(player.getX()+100, player.getY()+70, 0f);
