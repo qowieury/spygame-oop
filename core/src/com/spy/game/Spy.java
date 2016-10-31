@@ -32,7 +32,9 @@ public class Spy extends ApplicationAdapter {
 
 
         player = new Player(sceneLoader.world);
+        Enemy enemy1 = new Enemy(120,180,sceneLoader.world);
         root.getChild("player").addScript(player);
+        root.getChild("enemy1").addScript(enemy1);
 
 
     }

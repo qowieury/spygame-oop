@@ -20,21 +20,24 @@ import com.uwsoft.editor.renderer.utils.ComponentRetriever;
  */
 public class Player implements IScript {
 
-    private Entity player;
-    private TransformComponent transformComponent;
-    private DimensionsComponent dimensionsComponent;
+    protected Entity player;
+    protected TransformComponent transformComponent;
+    protected DimensionsComponent dimensionsComponent;
 
-    private AnimationComponent animationComponent;
-    private World world;
+    protected AnimationComponent animationComponent;
+    protected World world;
 
 
-    private Vector2 speed;
-    private final Vector2 jumpSideSpeed = new Vector2(-20, 0);
+    protected Vector2 speed;
+    protected final Vector2 jumpSideSpeed = new Vector2(-20, 0);
 
-    private final float gravity = -500f;
-    private final float jumpSpeed = 200f;
+    protected final float gravity = -500f;
+    protected final float jumpSpeed = 200f;
 
-    private boolean isJumping;
+    protected boolean isJumping;
+    public Player(){
+
+    }
 
     public Player(World world) {
         this.world = world;
@@ -58,7 +61,7 @@ public class Player implements IScript {
         rayCastButtom();
     }
 
-    private void rayCastButtom() {
+    protected void rayCastButtom() {
         float rayGap = dimensionsComponent.height / 2;
         float raySize = -(speed.y) * Gdx.graphics.getDeltaTime();
 
@@ -84,39 +87,50 @@ public class Player implements IScript {
 
     }
 
-    private void doGravity(float delta) {
+    protected void doGravity(float delta) {
         speed.y += gravity * delta;
         transformComponent.y += speed.y * delta;
     }
 
-    private void getInput(float delta) {
+    protected void getInput(float delta) {
         if (Gdx.input.isKeyJustPressed(Input.Keys.W) && isJumping == false) {
-            speed.y = jumpSpeed;
-            isJumping = true;
-
+            jump();
         }
         if (Gdx.input.isKeyPressed(Input.Keys.A)) {
-            if (isJumping == false) {
-                transformComponent.x -= speed.x * delta;
-            } else {
-                transformComponent.x -= (speed.x + jumpSideSpeed.x) * delta;
-            }
-
-            transformComponent.scaleX = -1f;
-
+            walkLeft(delta);
         }
         if (Gdx.input.isKeyPressed(Input.Keys.D)) {
-            if (isJumping == false) {
-                transformComponent.x += speed.x * delta;
-            } else {
-                transformComponent.x += (speed.x + jumpSideSpeed.x) * delta;
-            }
+            walkRight(delta);
 
-            transformComponent.scaleX = 1f;
         }
         if (Gdx.input.isKeyPressed(Input.Keys.S)) {
 
         }
+    }
+    protected void walkLeft(float delta){
+        if (isJumping == false) {
+            transformComponent.x -= speed.x * delta;
+        } else {
+            transformComponent.x -= (speed.x + jumpSideSpeed.x) * delta;
+        }
+
+        transformComponent.scaleX = -1f;
+
+
+    }
+    protected void walkRight(float delta){
+        if (isJumping == false) {
+            transformComponent.x += speed.x * delta;
+        } else {
+            transformComponent.x += (speed.x + jumpSideSpeed.x) * delta;
+        }
+        transformComponent.scaleX = 1f;
+
+    }
+    protected void jump(){
+        speed.y = jumpSpeed;
+        isJumping = true;
+
     }
 
     public float getSpeedX() {
