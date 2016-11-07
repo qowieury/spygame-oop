@@ -6,13 +6,19 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.sun.glass.ui.Application;
 import com.uwsoft.editor.renderer.SceneLoader;
 import com.uwsoft.editor.renderer.utils.ItemWrapper;
 
-public class Spy extends ApplicationAdapter {
+/**
+ * Created by qowie on 11/7/2016.
+ */
+public class Stage1 extends ApplicationAdapter {
+    private final String STAGE_NAME ="MainScene";
+    private final float VIEWPORT_X = 360;
+    private final float VIEWPORT_Y = 200;
 
     SceneLoader sceneLoader;
-
     private Player player;
     private Viewport viewport;
     private ItemWrapper root;
@@ -20,9 +26,9 @@ public class Spy extends ApplicationAdapter {
     @Override
     public void create() {
 
-        viewport = new FitViewport(360, 200);
+        viewport = new FitViewport(VIEWPORT_X,VIEWPORT_Y);
         sceneLoader = new SceneLoader();
-        sceneLoader.loadScene("MainScene", viewport);
+        sceneLoader.loadScene(STAGE_NAME, viewport);
 
         root = new ItemWrapper(sceneLoader.getRoot());
 
