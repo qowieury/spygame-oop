@@ -3,6 +3,7 @@ package com.spy.game;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.math.Polygon;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.RayCastCallback;
@@ -10,6 +11,7 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.sun.glass.ui.View;
 import com.uwsoft.editor.renderer.Overlap2D;
 import com.uwsoft.editor.renderer.components.DimensionsComponent;
+import com.uwsoft.editor.renderer.components.PolygonComponent;
 import com.uwsoft.editor.renderer.components.TransformComponent;
 import com.uwsoft.editor.renderer.components.sprite.AnimationComponent;
 import com.uwsoft.editor.renderer.data.CompositeItemVO;
@@ -28,6 +30,11 @@ public class Player implements IScript {
     protected DimensionsComponent dimensionsComponent;
 
     protected AnimationComponent animationComponent;
+
+
+    private PolygonComponent polygonComponent;
+    public Polygon polygon;
+
     protected World world;
 
 
@@ -38,7 +45,8 @@ public class Player implements IScript {
     protected final float jumpSpeed = 200f;
 
     protected boolean isJumping;
-    public Player(){
+
+    public Player() {
 
     }
 
@@ -53,12 +61,25 @@ public class Player implements IScript {
         transformComponent = ComponentRetriever.get(entity, TransformComponent.class);
         dimensionsComponent = ComponentRetriever.get(entity, DimensionsComponent.class);
         animationComponent = ComponentRetriever.get(entity, AnimationComponent.class);
+        polygonComponent = ComponentRetriever.get(entity, PolygonComponent.class);
+        polygon = new Polygon();
+        int n = polygonComponent.vertices[0].length;
 
+        //
+        System.out.println("asdasd : " + n);
+        System.out.println(polygonComponent.vertices.length);
+        System.out.println(polygonComponent.vertices[0].length);
+        System.out.println(polygonComponent.vertices[0][0]);
+        System.out.println(polygonComponent.vertices[0][1]);
+        System.out.println(polygonComponent.vertices[0][2]);
+        System.out.println(polygonComponent.vertices[0][3]);
+        //
         speed = new Vector2(80, 0);
     }
 
     @Override
     public void act(float delta) {
+
 
         getInput(delta);
         doGravity(delta);
@@ -91,6 +112,10 @@ public class Player implements IScript {
 
     }
 
+    public Polygon getPolygon(){
+        return dimensionsComponent.polygon;
+    }
+
     protected void doGravity(float delta) {
         speed.y += gravity * delta;
         transformComponent.y += speed.y * delta;
@@ -111,7 +136,8 @@ public class Player implements IScript {
 
         }
     }
-    protected void walkLeft(float delta){
+
+    protected void walkLeft(float delta) {
         if (isJumping == false) {
             transformComponent.x -= speed.x * delta;
         } else {
@@ -122,7 +148,8 @@ public class Player implements IScript {
 
 
     }
-    protected void walkRight(float delta){
+
+    protected void walkRight(float delta) {
         if (isJumping == false) {
             transformComponent.x += speed.x * delta;
         } else {
@@ -131,7 +158,8 @@ public class Player implements IScript {
         transformComponent.scaleX = 1f;
 
     }
-    protected void jump(){
+
+    protected void jump() {
         speed.y = jumpSpeed;
         isJumping = true;
 
