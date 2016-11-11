@@ -4,6 +4,7 @@ import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.math.Polygon;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.RayCastCallback;
@@ -33,7 +34,7 @@ public class Player implements IScript {
 
 
     private PolygonComponent polygonComponent;
-    public Polygon polygon;
+
 
     protected World world;
 
@@ -62,30 +63,28 @@ public class Player implements IScript {
         dimensionsComponent = ComponentRetriever.get(entity, DimensionsComponent.class);
         animationComponent = ComponentRetriever.get(entity, AnimationComponent.class);
         polygonComponent = ComponentRetriever.get(entity, PolygonComponent.class);
-        polygon = new Polygon();
-        int n = polygonComponent.vertices[0].length;
 
-        //
-        System.out.println("asdasd : " + n);
-        System.out.println(polygonComponent.vertices.length);
-        System.out.println(polygonComponent.vertices[0].length);
-        System.out.println(polygonComponent.vertices[0][0]);
-        System.out.println(polygonComponent.vertices[0][1]);
-        System.out.println(polygonComponent.vertices[0][2]);
-        System.out.println(polygonComponent.vertices[0][3]);
-        //
+        polygonComponent.makeRectangle(dimensionsComponent.width,dimensionsComponent.height);
+        dimensionsComponent.setPolygon(polygonComponent);
+
+
         speed = new Vector2(80, 0);
     }
 
     @Override
     public void act(float delta) {
-
-
+        dimensionsComponent.polygon.setPosition(transformComponent.x,transformComponent.y);
         getInput(delta);
         doGravity(delta);
         rayCastButtom();
     }
 
+
+
+    @Override
+    public void dispose() {
+
+    }
     protected void rayCastButtom() {
         float rayGap = dimensionsComponent.height / 2;
         float raySize = -(speed.y) * Gdx.graphics.getDeltaTime();
@@ -105,11 +104,6 @@ public class Player implements IScript {
                 return 0;
             }
         }, rayFrom, rayTo);
-    }
-
-    @Override
-    public void dispose() {
-
     }
 
     public Polygon getPolygon(){
@@ -179,5 +173,9 @@ public class Player implements IScript {
 
     public float getY() {
         return transformComponent.y;
+    }
+
+    public Rectangle getBoundbox(){
+        return dimensionsComponent.boundBox;
     }
 }

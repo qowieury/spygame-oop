@@ -25,6 +25,7 @@ public class Enemy extends Player {
     }
     @Override
     public void act(float delta) {
+        dimensionsComponent.polygon.setPosition(transformComponent.x,transformComponent.y);
         doGravity(delta);
         rayCastButtom();
 
