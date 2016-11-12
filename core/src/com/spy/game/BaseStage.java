@@ -15,37 +15,51 @@ import java.util.ArrayList;
  * Created by qowie on 11/11/2016.
  */
 public class BaseStage extends ApplicationAdapter {
-    private final String STAGE_NAME = "MainScene";
-    private final float VIEWPORT_X = 360;
-    private final float VIEWPORT_Y = 200;
+    protected String STAGE_NAME = "MainScene";
+    protected final float VIEWPORT_X = 360;
+    protected final float VIEWPORT_Y = 200;
 
-    SceneLoader sceneLoader;
-    private Player player;
-    private ArrayList<Enemy> enemy = new ArrayList<Enemy>();
+    protected SceneLoader sceneLoader;
+    protected Player player;
+    protected ArrayList<Enemy> enemy = new ArrayList<Enemy>();
 
-    private CollisionListener collisionListener = new CollisionListener();
+    protected CollisionListener collisionListener = new CollisionListener();
 
 
-    private Viewport viewport;
-    private ItemWrapper root;
+    protected Viewport viewport;
+    protected ItemWrapper root;
 
 
     @Override
     public void create() {
 
         loadSceneAndViewport();
+        createPlayer();
+        createEnemy();
+        addScriptToChildOfRoot();
 
-        player = new Player(sceneLoader.world);
-        enemy.add(new Enemy(120, 180, sceneLoader.world));
-        enemy.add(new Enemy(180, 240, sceneLoader.world));
+
+
+
+
+
+    }
+    protected void addScriptToChildOfRoot(){
         root.getChild("player").addScript(player);
         root.getChild("enemy1").addScript(enemy.get(0));
         root.getChild("enemy2").addScript(enemy.get(1));
 
+    }
+    protected void createEnemy(){
+        enemy.add(new Enemy(120, 180, sceneLoader.world));
+        enemy.add(new Enemy(180, 240, sceneLoader.world));
 
     }
+    protected void createPlayer(){
+        player = new Player(sceneLoader.world);
+    }
 
-    private void loadSceneAndViewport() {
+    protected void loadSceneAndViewport() {
         viewport = new FitViewport(VIEWPORT_X, VIEWPORT_Y);
         sceneLoader = new SceneLoader();
         sceneLoader.loadScene(STAGE_NAME, viewport);
@@ -61,7 +75,7 @@ public class BaseStage extends ApplicationAdapter {
 
     }
 
-    private void detectPlayerCollisEnemy() {
+    protected void detectPlayerCollisEnemy() {
         if (player.getPolygon() != null) {
             for (int i = 0; i < enemy.size(); i++) {
                 if (enemy.get(i).getPolygon() != null) {
@@ -73,13 +87,13 @@ public class BaseStage extends ApplicationAdapter {
         }
     }
 
-    private void loadSceneRender() {
+    protected void loadSceneRender() {
         Gdx.gl.glClearColor(1, 1, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         sceneLoader.getEngine().update(Gdx.graphics.getDeltaTime());
     }
 
-    private void cameraFollowPlayer() {
+    protected void cameraFollowPlayer() {
         ((OrthographicCamera) viewport.getCamera()).position.set(player.getX() + 100, player.getY() + 70, 0f);
 
     }

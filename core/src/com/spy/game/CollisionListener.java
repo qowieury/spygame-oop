@@ -17,9 +17,7 @@ public class CollisionListener {
     }
 
     public boolean isCollision(Polygon polygon1,Polygon polygon2){
-        if(polygon1.getBoundingRectangle().overlaps(polygon2.getBoundingRectangle())){
-            System.out.println("1111111111111111");
-        }
+
         return polygon1.getBoundingRectangle().overlaps(polygon2.getBoundingRectangle());
 
     }

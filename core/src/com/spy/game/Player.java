@@ -26,7 +26,7 @@ import com.uwsoft.editor.renderer.utils.ComponentRetriever;
  */
 public class Player implements IScript {
 
-    protected Entity player;
+
     protected TransformComponent transformComponent;
     protected DimensionsComponent dimensionsComponent;
 
@@ -57,8 +57,6 @@ public class Player implements IScript {
 
     @Override
     public void init(Entity entity) {
-
-        player = entity;
         transformComponent = ComponentRetriever.get(entity, TransformComponent.class);
         dimensionsComponent = ComponentRetriever.get(entity, DimensionsComponent.class);
         animationComponent = ComponentRetriever.get(entity, AnimationComponent.class);
