@@ -17,7 +17,7 @@ import com.uwsoft.editor.renderer.utils.ItemWrapper;
  * Created by qowie on 11/7/2016.
  */
 public class Stage1 extends BaseStage {
-    protected String STAGE_NAME ="MainScene1";
+    protected String STAGE_NAME ="MainScene";
     protected final float VIEWPORT_X = 360;
     protected final float VIEWPORT_Y = 200;
 
@@ -29,8 +29,8 @@ public class Stage1 extends BaseStage {
     @Override
     protected void addScriptToChildOfRoot(){
         root.getChild("player").addScript(player);
-        root.getChild("enemy1").addScript(enemy.get(0));
-        root.getChild("enemy2").addScript(enemy.get(1));
+        root.getChild("enemy0").addScript(enemy.get(0));
+        root.getChild("enemy1").addScript(enemy.get(1));
 
     }
     @Override

@@ -22,6 +22,7 @@ public class BaseStage extends ApplicationAdapter {
     protected SceneLoader sceneLoader;
     protected Player player;
     protected ArrayList<Enemy> enemy = new ArrayList<Enemy>();
+    protected ArrayList<ComponentWall> wall = new ArrayList<ComponentWall>();
 
     protected CollisionListener collisionListener = new CollisionListener();
 
@@ -36,26 +37,43 @@ public class BaseStage extends ApplicationAdapter {
         loadSceneAndViewport();
         createPlayer();
         createEnemy();
+        initWallToOverride();
         addScriptToChildOfRoot();
 
 
 
 
+    }
+    protected void initWallToOverride(){
+        initWall(2);
+    }
 
+    protected void initWall(int wallCount){
+
+        for(int i=0;i<wallCount;i++) {
+            wall.add(new ComponentWall());
+        }
+
+        for(int i=0;i<wallCount;i++){
+            root.getChild("wall"+i).addScript(wall.get(i));
+        }
 
     }
-    protected void addScriptToChildOfRoot(){
+
+    protected void addScriptToChildOfRoot() {
         root.getChild("player").addScript(player);
-        root.getChild("enemy1").addScript(enemy.get(0));
-        root.getChild("enemy2").addScript(enemy.get(1));
+        root.getChild("enemy0").addScript(enemy.get(0));
+        root.getChild("enemy1").addScript(enemy.get(1));
 
     }
-    protected void createEnemy(){
+
+    protected void createEnemy() {
         enemy.add(new Enemy(120, 180, sceneLoader.world));
         enemy.add(new Enemy(180, 240, sceneLoader.world));
 
     }
-    protected void createPlayer(){
+
+    protected void createPlayer() {
         player = new Player(sceneLoader.world);
     }
 
@@ -71,9 +89,18 @@ public class BaseStage extends ApplicationAdapter {
         loadSceneRender();
         cameraFollowPlayer();
         detectPlayerCollisEnemy();
-
-
+        if (player.getPolygon() != null) {
+            for (int i = 0; i < wall.size(); i++) {
+                if (wall.get(i).getPolygon() != null) {
+                    if(collisionListener.isCollision(player.getPolygon(),wall.get(i).getPolygon())){
+                        System.out.println("player and wall" + i);
+                }
+            }
+        }
     }
+
+
+}
 
     protected void detectPlayerCollisEnemy() {
         if (player.getPolygon() != null) {
