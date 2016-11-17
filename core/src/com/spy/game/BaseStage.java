@@ -89,18 +89,22 @@ public class BaseStage extends ApplicationAdapter {
         loadSceneRender();
         cameraFollowPlayer();
         detectPlayerCollisEnemy();
+        detectPlayerCollisWall();
+
+
+}
+    protected  void detectPlayerCollisWall(){
         if (player.getPolygon() != null) {
             for (int i = 0; i < wall.size(); i++) {
                 if (wall.get(i).getPolygon() != null) {
                     if(collisionListener.isCollision(player.getPolygon(),wall.get(i).getPolygon())){
                         System.out.println("player and wall" + i);
+                        player.contactWall(wall.get(i).getPolygon());
+                    }
                 }
             }
         }
     }
-
-
-}
 
     protected void detectPlayerCollisEnemy() {
         if (player.getPolygon() != null) {

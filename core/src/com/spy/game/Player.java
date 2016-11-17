@@ -37,14 +37,10 @@ public class Player implements IScript {
 
 
     protected World world;
-
-
     protected Vector2 speed;
     protected final Vector2 jumpSideSpeed = new Vector2(-20, 0);
-
     protected final float gravity = -500f;
     protected final float jumpSpeed = 200f;
-
     protected boolean isJumping;
 
     public Player() {
@@ -75,6 +71,7 @@ public class Player implements IScript {
         getInput(delta);
         doGravity(delta);
         rayCastButtom();
+
     }
 
 
@@ -83,6 +80,16 @@ public class Player implements IScript {
     public void dispose() {
 
     }
+
+    public void contactWall(Polygon polygon){
+        if (transformComponent.x < polygon.getX()){
+            transformComponent.x -= speed.x*Gdx.graphics.getDeltaTime();
+        }else {
+            transformComponent.x += speed.x*Gdx.graphics.getDeltaTime();
+        }
+
+    }
+
     protected void rayCastButtom() {
         float rayGap = dimensionsComponent.height / 2;
         float raySize = -(speed.y) * Gdx.graphics.getDeltaTime();
