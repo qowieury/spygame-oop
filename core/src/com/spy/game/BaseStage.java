@@ -6,6 +6,9 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.spy.game.component.ComponentBox;
+import com.spy.game.component.ComponentDoor;
+import com.spy.game.component.ComponentWall;
 import com.uwsoft.editor.renderer.SceneLoader;
 import com.uwsoft.editor.renderer.utils.ItemWrapper;
 
@@ -23,6 +26,8 @@ public class BaseStage extends ApplicationAdapter {
     protected Player player;
     protected ArrayList<Enemy> enemy = new ArrayList<Enemy>();
     protected ArrayList<ComponentWall> wall = new ArrayList<ComponentWall>();
+    protected ArrayList<ComponentDoor> door = new ArrayList<ComponentDoor>();
+    protected ArrayList<ComponentBox> box = new ArrayList<ComponentBox>();
 
     protected CollisionListener collisionListener = new CollisionListener();
 
@@ -38,15 +43,32 @@ public class BaseStage extends ApplicationAdapter {
         createPlayer();
         createEnemy();
         initWallToOverride();
+        initBoxToOverride();
         addScriptToChildOfRoot();
 
 
 
 
     }
+    protected  void  initBoxToOverride(){
+        initBox(1);
+    }
     protected void initWallToOverride(){
         initWall(2);
     }
+
+
+    protected  void initBox(int boxCount){
+        for(int i=0;i<boxCount;i++) {
+           box.add(new ComponentBox(sceneLoader.world));
+        }
+
+        for(int i=0;i<boxCount;i++){
+            root.getChild("box"+i).addScript(box.get(i));
+        }
+    }
+
+
 
     protected void initWall(int wallCount){
 
@@ -80,8 +102,12 @@ public class BaseStage extends ApplicationAdapter {
     protected void loadSceneAndViewport() {
         viewport = new FitViewport(VIEWPORT_X, VIEWPORT_Y);
         sceneLoader = new SceneLoader();
-        sceneLoader.loadScene(STAGE_NAME, viewport);
+        //sceneLoader.loadScene(STAGE_NAME, viewport);
+        loadSceneByName();
         root = new ItemWrapper(sceneLoader.getRoot());
+    }
+    protected void loadSceneByName(){
+        sceneLoader.loadScene(STAGE_NAME,viewport);
     }
 
     @Override
@@ -93,12 +119,13 @@ public class BaseStage extends ApplicationAdapter {
 
 
 }
+
     protected  void detectPlayerCollisWall(){
         if (player.getPolygon() != null) {
             for (int i = 0; i < wall.size(); i++) {
                 if (wall.get(i).getPolygon() != null) {
                     if(collisionListener.isCollision(player.getPolygon(),wall.get(i).getPolygon())){
-                        System.out.println("player and wall" + i);
+                        System.out.println("player and wall" + i); ////////////////
                         player.contactWall(wall.get(i).getPolygon());
                     }
                 }

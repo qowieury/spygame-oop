@@ -67,10 +67,12 @@ public class Player implements IScript {
 
     @Override
     public void act(float delta) {
-        dimensionsComponent.polygon.setPosition(transformComponent.x,transformComponent.y);
+        setPolygonPostion();
         getInput(delta);
         doGravity(delta);
         rayCastButtom();
+
+
 
     }
 
@@ -80,7 +82,9 @@ public class Player implements IScript {
     public void dispose() {
 
     }
-
+    protected void setPolygonPostion(){
+        dimensionsComponent.polygon.setPosition(transformComponent.x,transformComponent.y);
+    }
     public void contactWall(Polygon polygon){
         if (transformComponent.x < polygon.getX()){
             transformComponent.x -= speed.x*Gdx.graphics.getDeltaTime();

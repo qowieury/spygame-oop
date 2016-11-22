@@ -27,6 +27,10 @@ public class Stage1 extends BaseStage {
 
     }
     @Override
+    protected void loadSceneByName(){
+        sceneLoader.loadScene(STAGE_NAME,viewport);
+    }
+    @Override
     protected void addScriptToChildOfRoot(){
         root.getChild("player").addScript(player);
         root.getChild("enemy0").addScript(enemy.get(0));

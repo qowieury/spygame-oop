@@ -6,22 +6,29 @@ filter: Linear,Linear
 repeat: none
 SaraFullSheet
   rotate: false
-  xy: 2, 86
+  xy: 2, 246
   size: 832, 1344
   split: 0, 263, 646, 568
   orig: 832, 1344
   offset: 0, 0
   index: -1
+box
+  rotate: false
+  xy: 2, 64
+  size: 180, 180
+  orig: 180, 180
+  offset: 0, 0
+  index: -1
 enemy
   rotate: false
-  xy: 2, 24
+  xy: 836, 1530
   size: 60, 60
   orig: 60, 60
   offset: 0, 0
   index: -1
 floor
   rotate: false
-  xy: 2, 2
+  xy: 184, 224
   size: 50, 20
   split: 20, 22, 11, 5
   orig: 50, 20
@@ -29,7 +36,7 @@ floor
   index: -1
 player
   rotate: false
-  xy: 836, 1370
+  xy: 2, 2
   size: 60, 60
   orig: 60, 60
   offset: 0, 0
