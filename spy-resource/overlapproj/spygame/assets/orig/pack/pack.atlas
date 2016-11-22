@@ -16,6 +16,7 @@ box
   rotate: false
   xy: 2, 64
   size: 180, 180
+  split: 0, 0, 0, 0
   orig: 180, 180
   offset: 0, 0
   index: -1
@@ -28,7 +29,7 @@ enemy
   index: -1
 floor
   rotate: false
-  xy: 184, 224
+  xy: 184, 152
   size: 50, 20
   split: 20, 22, 11, 5
   orig: 50, 20
@@ -39,5 +40,13 @@ player
   xy: 2, 2
   size: 60, 60
   orig: 60, 60
+  offset: 0, 0
+  index: -1
+shortbox
+  rotate: false
+  xy: 184, 174
+  size: 280, 70
+  split: 40, 29, 0, 0
+  orig: 280, 70
   offset: 0, 0
   index: -1

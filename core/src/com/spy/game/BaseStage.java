@@ -8,6 +8,7 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.spy.game.component.ComponentBox;
 import com.spy.game.component.ComponentDoor;
+import com.spy.game.component.ComponentFloor;
 import com.spy.game.component.ComponentWall;
 import com.uwsoft.editor.renderer.SceneLoader;
 import com.uwsoft.editor.renderer.utils.ItemWrapper;
@@ -28,6 +29,7 @@ public class BaseStage extends ApplicationAdapter {
     protected ArrayList<ComponentWall> wall = new ArrayList<ComponentWall>();
     protected ArrayList<ComponentDoor> door = new ArrayList<ComponentDoor>();
     protected ArrayList<ComponentBox> box = new ArrayList<ComponentBox>();
+    protected ArrayList<ComponentFloor> floor = new ArrayList<ComponentFloor>();
 
     protected CollisionListener collisionListener = new CollisionListener();
 
@@ -44,40 +46,56 @@ public class BaseStage extends ApplicationAdapter {
         createEnemy();
         initWallToOverride();
         initBoxToOverride();
+        initFloorToOverride();
         addScriptToChildOfRoot();
 
 
-
-
     }
-    protected  void  initBoxToOverride(){
+
+    protected void initBoxToOverride() {
         initBox(1);
     }
-    protected void initWallToOverride(){
+
+    protected void initWallToOverride() {
         initWall(2);
     }
 
-
-    protected  void initBox(int boxCount){
-        for(int i=0;i<boxCount;i++) {
-           box.add(new ComponentBox(sceneLoader.world));
-        }
-
-        for(int i=0;i<boxCount;i++){
-            root.getChild("box"+i).addScript(box.get(i));
-        }
+    protected void initFloorToOverride() {
+        initFloor(5);
     }
 
 
+    protected void initBox(int boxCount) {
+        for (int i = 0; i < boxCount; i++) {
+            box.add(new ComponentBox(sceneLoader.world));
+        }
 
-    protected void initWall(int wallCount){
+        for (int i = 0; i < boxCount; i++) {
+            root.getChild("box" + i).addScript(box.get(i));
+        }
+    }
 
-        for(int i=0;i<wallCount;i++) {
+    protected void initFloor(int floorCount) {
+
+        for (int i = 0; i < floorCount; i++) {
+            floor.add(new ComponentFloor());
+        }
+
+        for (int i = 0; i < floorCount; i++) {
+            root.getChild("floor" + i).addScript(floor.get(i));
+        }
+
+    }
+
+
+    protected void initWall(int wallCount) {
+
+        for (int i = 0; i < wallCount; i++) {
             wall.add(new ComponentWall());
         }
 
-        for(int i=0;i<wallCount;i++){
-            root.getChild("wall"+i).addScript(wall.get(i));
+        for (int i = 0; i < wallCount; i++) {
+            root.getChild("wall" + i).addScript(wall.get(i));
         }
 
     }
@@ -106,8 +124,9 @@ public class BaseStage extends ApplicationAdapter {
         loadSceneByName();
         root = new ItemWrapper(sceneLoader.getRoot());
     }
-    protected void loadSceneByName(){
-        sceneLoader.loadScene(STAGE_NAME,viewport);
+
+    protected void loadSceneByName() {
+        sceneLoader.loadScene(STAGE_NAME, viewport);
     }
 
     @Override
@@ -116,15 +135,39 @@ public class BaseStage extends ApplicationAdapter {
         cameraFollowPlayer();
         detectPlayerCollisEnemy();
         detectPlayerCollisWall();
+        detectPlayerCollisBox();
 
 
-}
+    }
+    protected void detectBoxCollisWall(){
+        for(int i =0;i<box.size();i++){
+            for (int j=0;j<wall.size();j++){
+                if(collisionListener.isCollision(box.get(i).getPolygon(),wall.get(i).getPolygon())){
+                    box.get(i).contactWall(wall.get(i).getPolygon());
+                }
+            }
+        }
+    }
 
-    protected  void detectPlayerCollisWall(){
+    protected void detectPlayerCollisBox(){
+        if (player.getPolygon() != null) {
+            for (int i = 0; i < box.size(); i++) {
+                if (box.get(i).getPolygon() != null) {
+                    if (collisionListener.isCollision(player.getPolygon(), box.get(i).getPolygon())) {
+                        System.out.println("player and wall" + i); ////////////////
+                        box.get(i).contactPlayer(player.getPolygon());
+                    }
+                }
+            }
+        }
+
+    }
+
+    protected void detectPlayerCollisWall() {
         if (player.getPolygon() != null) {
             for (int i = 0; i < wall.size(); i++) {
                 if (wall.get(i).getPolygon() != null) {
-                    if(collisionListener.isCollision(player.getPolygon(),wall.get(i).getPolygon())){
+                    if (collisionListener.isCollision(player.getPolygon(), wall.get(i).getPolygon())) {
                         System.out.println("player and wall" + i); ////////////////
                         player.contactWall(wall.get(i).getPolygon());
                     }

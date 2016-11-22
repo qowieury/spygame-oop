@@ -94,6 +94,7 @@ public class Player implements IScript {
 
     }
 
+
     protected void rayCastButtom() {
         float rayGap = dimensionsComponent.height / 2;
         float raySize = -(speed.y) * Gdx.graphics.getDeltaTime();
