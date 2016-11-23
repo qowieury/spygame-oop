@@ -6,10 +6,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.spy.game.component.ComponentBox;
-import com.spy.game.component.ComponentDoor;
-import com.spy.game.component.ComponentFloor;
-import com.spy.game.component.ComponentWall;
+import com.spy.game.component.*;
 import com.uwsoft.editor.renderer.SceneLoader;
 import com.uwsoft.editor.renderer.utils.ItemWrapper;
 
@@ -30,6 +27,7 @@ public class BaseStage extends ApplicationAdapter {
     protected ArrayList<ComponentDoor> door = new ArrayList<ComponentDoor>();
     protected ArrayList<ComponentBox> box = new ArrayList<ComponentBox>();
     protected ArrayList<ComponentFloor> floor = new ArrayList<ComponentFloor>();
+    protected ArrayList<ComponentBase> base = new ArrayList<ComponentBase>();
 
     protected CollisionListener collisionListener = new CollisionListener();
 
@@ -47,6 +45,8 @@ public class BaseStage extends ApplicationAdapter {
         initWallToOverride();
         initBoxToOverride();
         initFloorToOverride();
+        initDoorToOverride();
+        initBaseToOverride();
         addScriptToChildOfRoot();
 
 
@@ -58,6 +58,14 @@ public class BaseStage extends ApplicationAdapter {
 
     protected void initWallToOverride() {
         initWall(2);
+    }
+
+    protected void initDoorToOverride(){
+        initDoor(1);
+    }
+
+    protected void initBaseToOverride(){
+        initBase(1);
     }
 
     protected void initFloorToOverride() {
@@ -73,6 +81,28 @@ public class BaseStage extends ApplicationAdapter {
         for (int i = 0; i < boxCount; i++) {
             root.getChild("box" + i).addScript(box.get(i));
         }
+    }
+
+    protected void initBase(int baseCount){
+        for (int i = 0; i < baseCount; i++) {
+            base.add(new ComponentBase());
+        }
+
+        for (int i = 0; i < baseCount; i++) {
+            root.getChild("base" + i).addScript(base.get(i));
+        }
+
+    }
+
+    protected  void initDoor(int doorCount){
+        for (int i = 0; i < doorCount; i++) {
+        door.add(new ComponentDoor());
+    }
+
+        for (int i = 0; i < doorCount; i++) {
+            root.getChild("door" + i).addScript(door.get(i));
+        }
+
     }
 
     protected void initFloor(int floorCount) {
@@ -136,10 +166,42 @@ public class BaseStage extends ApplicationAdapter {
         detectPlayerCollisEnemy();
         detectPlayerCollisWall();
         detectPlayerCollisBox();
+        detectPlayerCollisDoor();
+        detectBoxCollisBase();
         detectBoxCollisWall();
 
 
     }
+
+    protected void detectBoxCollisBase(){
+        for(int i =0;i<box.size();i++){
+            for (int j=0;j<base.size();j++){
+                if(collisionListener.isCollision(box.get(i).getPolygon(),base.get(j).getPolygon())){
+                    door.get(j).checkDoorTrigged();
+
+                    System.out.println("box and Base");
+                }else{
+                    door.get(j).cancelTrigged();
+                    System.out.println("canceltriggg");
+                }
+            }
+        }
+    }
+
+    protected void detectPlayerCollisDoor(){
+        if (player.getPolygon() != null) {
+            for (int i = 0; i < door.size(); i++) {
+                if (door.get(i).getPolygon() != null) {
+                    if (collisionListener.isCollision(player.getPolygon(), door.get(i).getPolygon())) {
+                        System.out.println("player and door" + i);
+                        player.contactWall(door.get(i).getPolygon());
+                    }
+                }
+            }
+        }
+
+    }
+
     protected void detectBoxCollisWall(){
         for(int i =0;i<box.size();i++){
             for (int j=0;j<wall.size();j++){
