@@ -9,6 +9,8 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.RayCastCallback;
 import com.badlogic.gdx.physics.box2d.World;
+import com.brashmonkey.spriter.Box;
+import com.spy.game.component.ComponentBox;
 import com.sun.glass.ui.View;
 import com.uwsoft.editor.renderer.Overlap2D;
 import com.uwsoft.editor.renderer.components.DimensionsComponent;
@@ -82,9 +84,11 @@ public class Player implements IScript {
     public void dispose() {
 
     }
+
     protected void setPolygonPostion(){
         dimensionsComponent.polygon.setPosition(transformComponent.x,transformComponent.y);
     }
+
     public void contactWall(Polygon polygon){
         if (transformComponent.x < polygon.getX()){
             transformComponent.x -= speed.x*Gdx.graphics.getDeltaTime();
@@ -166,6 +170,19 @@ public class Player implements IScript {
     protected void jump() {
         speed.y = jumpSpeed;
         isJumping = true;
+
+    }
+
+    public void standOnBox(ComponentBox box){
+
+            if(transformComponent.y > box.transformComponent.y+(box.dimensionsComponent.height)/1.2f ){
+                isJumping = false;
+                speed.y = 0;
+                transformComponent.y = (box.dimensionsComponent.height)+box.transformComponent.y;
+
+                System.out.println("Player stand on box");
+
+            }
 
     }
 

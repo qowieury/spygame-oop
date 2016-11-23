@@ -11,10 +11,11 @@ import com.spy.game.Player;
  */
 public class ComponentBox extends Player {
 
-    public ComponentBox(){
+    public ComponentBox() {
 
     }
-    public ComponentBox(World world){
+
+    public ComponentBox(World world) {
         this.world = world;
     }
 
@@ -26,14 +27,15 @@ public class ComponentBox extends Player {
         rayCastButtom();
 
 
-
-
     }
-    public void contactPlayer(Polygon polygon){
-        if(polygon.getX() < transformComponent.x){
-            walkRight(Gdx.graphics.getDeltaTime());
-        }else{
-            walkLeft(Gdx.graphics.getDeltaTime());
+
+    public void contactPlayer(Polygon polygon) {
+        if (transformComponent.y >= polygon.getY()-polygon.getScaleY()/2) {
+            if (polygon.getX() < transformComponent.x) {
+                walkRight(Gdx.graphics.getDeltaTime());
+            } else {
+                walkLeft(Gdx.graphics.getDeltaTime());
+            }
         }
     }
 }

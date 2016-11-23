@@ -136,14 +136,16 @@ public class BaseStage extends ApplicationAdapter {
         detectPlayerCollisEnemy();
         detectPlayerCollisWall();
         detectPlayerCollisBox();
+        detectBoxCollisWall();
 
 
     }
     protected void detectBoxCollisWall(){
         for(int i =0;i<box.size();i++){
             for (int j=0;j<wall.size();j++){
-                if(collisionListener.isCollision(box.get(i).getPolygon(),wall.get(i).getPolygon())){
-                    box.get(i).contactWall(wall.get(i).getPolygon());
+                if(collisionListener.isCollision(box.get(i).getPolygon(),wall.get(j).getPolygon())){
+                    box.get(i).contactWall(wall.get(j).getPolygon());
+                    System.out.println("box and wall");
                 }
             }
         }
@@ -154,8 +156,9 @@ public class BaseStage extends ApplicationAdapter {
             for (int i = 0; i < box.size(); i++) {
                 if (box.get(i).getPolygon() != null) {
                     if (collisionListener.isCollision(player.getPolygon(), box.get(i).getPolygon())) {
-                        System.out.println("player and wall" + i); ////////////////
+                        System.out.println("player and box" + i);
                         box.get(i).contactPlayer(player.getPolygon());
+                        player.standOnBox(box.get(i));
                     }
                 }
             }
