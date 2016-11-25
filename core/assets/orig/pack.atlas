@@ -60,7 +60,7 @@ shortbox
   rotate: false
   xy: 184, 134
   size: 280, 70
-  split: 276, 0, 0, 0
+  split: 0, 0, 0, 0
   orig: 280, 70
   offset: 0, 0
   index: -1

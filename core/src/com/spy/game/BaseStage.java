@@ -53,15 +53,15 @@ public class BaseStage extends ApplicationAdapter {
     }
 
     protected void initBoxToOverride() {
-        initBox(1);
+        initBox(4);
     }
 
     protected void initWallToOverride() {
-        initWall(2);
+        initWall(1);
     }
 
     protected void initDoorToOverride(){
-        initDoor(1);
+        initDoor(3);
     }
 
     protected void initBaseToOverride(){
@@ -174,18 +174,36 @@ public class BaseStage extends ApplicationAdapter {
     }
 
     protected void detectBoxCollisBase(){
-        for(int i =0;i<box.size();i++){
-            for (int j=0;j<base.size();j++){
-                if(collisionListener.isCollision(box.get(i).getPolygon(),base.get(j).getPolygon())){
-                    door.get(j).checkDoorTrigged();
+        for (int i =0;i<door.size();i++){
+            door.get(i).checktrig(base,box,i);
+        }
 
-                    System.out.println("box and Base");
+        /*
+        for(int i =0;i<base.size();i++){
+            for (int j=0;j<box.size();j++){
+                if(collisionListener.isCollision(box.get(j).getPolygon(),base.get(i).getPolygon())){
+                    try {
+                        //door.get(i).checkDoorTrigged();
+                        base.get(i).trigTheDoor(door.get(i));
+                        System.out.println("door "+i+ " trig");
+                    }catch (IndexOutOfBoundsException outOfbound){
+                       // System.out.println("outofbound");
+                    }
+
+                    System.out.println("box and Base Box "+i +" Base "+j );
                 }else{
-                    door.get(j).cancelTrigged();
-                    System.out.println("canceltriggg");
+                    try {
+                        door.get(i).cancelTrigged();
+                    }catch (IndexOutOfBoundsException outOfBound){
+                      //  System.out.println("outofbound");
+                    }
+
+
+                   // System.out.println("canceltriggg");
                 }
             }
         }
+        */
     }
 
     protected void detectPlayerCollisDoor(){
