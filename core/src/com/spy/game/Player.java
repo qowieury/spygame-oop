@@ -17,6 +17,7 @@ import com.uwsoft.editor.renderer.components.DimensionsComponent;
 import com.uwsoft.editor.renderer.components.PolygonComponent;
 import com.uwsoft.editor.renderer.components.TransformComponent;
 import com.uwsoft.editor.renderer.components.sprite.AnimationComponent;
+import com.uwsoft.editor.renderer.components.spriter.SpriterComponent;
 import com.uwsoft.editor.renderer.data.CompositeItemVO;
 import com.uwsoft.editor.renderer.physics.PhysicsBodyLoader;
 import com.uwsoft.editor.renderer.scripts.IScript;
@@ -33,6 +34,7 @@ public class Player implements IScript {
     protected DimensionsComponent dimensionsComponent;
 
     protected AnimationComponent animationComponent;
+    protected SpriterComponent spriterComponent;
 
 
     private PolygonComponent polygonComponent;
@@ -59,6 +61,7 @@ public class Player implements IScript {
         dimensionsComponent = ComponentRetriever.get(entity, DimensionsComponent.class);
         animationComponent = ComponentRetriever.get(entity, AnimationComponent.class);
         polygonComponent = ComponentRetriever.get(entity, PolygonComponent.class);
+        spriterComponent = ComponentRetriever.get(entity,SpriterComponent.class);
 
         polygonComponent.makeRectangle(dimensionsComponent.width,dimensionsComponent.height);
         dimensionsComponent.setPolygon(polygonComponent);
@@ -135,11 +138,18 @@ public class Player implements IScript {
         }
         if (Gdx.input.isKeyPressed(Input.Keys.A)) {
             walkLeft(delta);
-        }
-        if (Gdx.input.isKeyPressed(Input.Keys.D)) {
-            walkRight(delta);
+        }else{
+            if (Gdx.input.isKeyPressed(Input.Keys.D)) {
+                walkRight(delta);
+
+            }else{
+                if(spriterComponent != null){
+                    spriterComponent.player.setAnimation("stand");
+                }
+            }
 
         }
+
         if (Gdx.input.isKeyPressed(Input.Keys.S)) {
 
         }
@@ -154,6 +164,11 @@ public class Player implements IScript {
 
         transformComponent.scaleX = -1f;
 
+        if(spriterComponent != null){
+            spriterComponent.player.setAnimation("walkleft");
+
+        }
+
 
     }
 
@@ -164,6 +179,11 @@ public class Player implements IScript {
             transformComponent.x += (speed.x + jumpSideSpeed.x) * delta;
         }
         transformComponent.scaleX = 1f;
+
+        if(spriterComponent != null){
+            spriterComponent.player.setAnimation("walkright");
+
+        }
 
     }
 
