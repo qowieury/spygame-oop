@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="r9" pixel_mode="1">
+    <folder id="0">
+        <file id="0" name="enemy1.png" width="18" height="33" pivot_x="0" pivot_y="1"/>
+        <file id="1" name="enemy2.png" width="19" height="33" pivot_x="0" pivot_y="1"/>
+        <file id="2" name="enemy3.png" width="21" height="33" pivot_x="0" pivot_y="1"/>
+    </folder>
+    <entity id="0" name="entity_000">
+        <animation id="0" name="stand" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="enemy1">
+                <key id="0" spin="0">
+                    <object folder="0" file="0" x="18" y="33" angle="0" scale_x="-1"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="1" name="walkright" length="400" interval="100">
+            <mainline>
+                <key id="0" curve_type="instant">
+                    <object_ref id="0" timeline="2" key="0" z_index="0"/>
+                </key>
+                <key id="1" time="200" curve_type="instant">
+                    <object_ref id="0" timeline="1" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="enemy2">
+                <key id="0" spin="0">
+                    <object folder="0" file="1" x="19" y="33" angle="0" scale_x="-1"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="enemy3">
+                <key id="0" time="200" spin="0">
+                    <object folder="0" file="2" x="21" y="33" angle="0" scale_x="-1"/>
+                </key>
+            </timeline>
+            <timeline id="2" name="enemy2_000">
+                <key id="0" spin="0">
+                    <object folder="0" file="1" x="19" y="33" angle="0" scale_x="-1"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="2" name="walkleft" length="400" interval="100">
+            <mainline>
+                <key id="0" curve_type="instant">
+                    <object_ref id="0" timeline="2" key="0" z_index="0"/>
+                </key>
+                <key id="1" time="2" curve_type="instant">
+                    <object_ref id="0" timeline="2" key="1" z_index="0"/>
+                </key>
+                <key id="2" time="200" curve_type="instant">
+                    <object_ref id="0" timeline="1" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="enemy2">
+                <key id="0" spin="0">
+                    <object folder="0" file="1" x="19" y="33" angle="0" scale_x="-1"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="enemy3">
+                <key id="0" time="200" spin="0">
+                    <object folder="0" file="2" x="-4" y="33" angle="0"/>
+                </key>
+            </timeline>
+            <timeline id="2" name="enemy2_000">
+                <key id="0" spin="0">
+                    <object folder="0" file="1" x="19" y="33" angle="0" scale_x="-1"/>
+                </key>
+                <key id="1" time="2" spin="0">
+                    <object folder="0" file="1" y="33" angle="0"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+</spriter_data>
