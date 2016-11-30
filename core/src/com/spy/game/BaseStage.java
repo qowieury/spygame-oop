@@ -28,12 +28,15 @@ public class BaseStage extends ApplicationAdapter {
     protected ArrayList<ComponentBox> box = new ArrayList<ComponentBox>();
     protected ArrayList<ComponentFloor> floor = new ArrayList<ComponentFloor>();
     protected ArrayList<ComponentBase> base = new ArrayList<ComponentBase>();
+    protected ArrayList<ComponentItem> item = new ArrayList<ComponentItem>();
 
     protected CollisionListener collisionListener = new CollisionListener();
 
 
     protected Viewport viewport;
     protected ItemWrapper root;
+
+    private float currentTime =0;
 
 
     @Override
@@ -47,6 +50,8 @@ public class BaseStage extends ApplicationAdapter {
         initFloorToOverride();
         initDoorToOverride();
         initBaseToOverride();
+        initItemToOverride();
+
         addScriptToChildOfRoot();
 
 
@@ -72,6 +77,24 @@ public class BaseStage extends ApplicationAdapter {
         initFloor(5);
     }
 
+    protected void initItemToOverride(){
+        initItem(1,1,1);
+    }
+
+    protected void initItem(int a,int b,int c){
+        for (int i =0;i<a;i++){
+            item.add(new ComponentItem(0,sceneLoader.world));
+            root.getChild("itemID0-"+(i)).addScript(item.get(item.size()-1));
+        }
+        for (int i =0;i<b;i++){
+            item.add(new ComponentItem(1,sceneLoader.world));
+            root.getChild("itemID1-"+(i)).addScript(item.get(item.size()-1));
+        }
+        for (int i =0;i<c;i++){
+            item.add(new ComponentItem(2,sceneLoader.world));
+            root.getChild("itemID2-"+(i)).addScript(item.get(item.size()-1));
+        }
+    }
 
     protected void initBox(int boxCount) {
         for (int i = 0; i < boxCount; i++) {
@@ -167,10 +190,30 @@ public class BaseStage extends ApplicationAdapter {
         detectPlayerCollisWall();
         detectPlayerCollisBox();
         detectPlayerCollisDoor();
+        detectPlayerCollisItem();
         detectBoxCollisBase();
         detectBoxCollisWall();
 
+        currentTime = currentTime + Gdx.graphics.getDeltaTime();
+        System.out.println(currentTime);
 
+
+    }
+
+    protected void detectPlayerCollisItem(){
+        if (player.getPolygon() != null) {
+            for (int i = 0; i < item.size(); i++) {
+                if (item.get(i).getPolygon() != null) {
+                    if (collisionListener.isCollision(player.getPolygon(), item.get(i).getPolygon())) {
+                        System.out.println("player and item" + i);
+                        if(player.collectItem(item.get(i))){
+                            item.get(i).psudoDelete();
+                        }
+
+                    }
+                }
+            }
+        }
     }
 
     protected void detectBoxCollisBase(){

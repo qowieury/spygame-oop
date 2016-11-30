@@ -6,7 +6,7 @@ filter: Linear,Linear
 repeat: none
 SaraFullSheet
   rotate: false
-  xy: 2, 206
+  xy: 2, 264
   size: 832, 1344
   split: 0, 263, 646, 568
   orig: 832, 1344
@@ -14,14 +14,14 @@ SaraFullSheet
   index: -1
 base
   rotate: false
-  xy: 2, 2
+  xy: 2, 60
   size: 110, 20
   orig: 110, 20
   offset: 0, 0
   index: -1
 box
   rotate: false
-  xy: 2, 24
+  xy: 2, 82
   size: 180, 180
   split: 0, 0, 0, 0
   orig: 180, 180
@@ -29,21 +29,21 @@ box
   index: -1
 door
   rotate: false
-  xy: 836, 1240
+  xy: 836, 1298
   size: 40, 310
   orig: 40, 310
   offset: 0, 0
   index: -1
 enemy
   rotate: false
-  xy: 878, 1490
+  xy: 878, 1548
   size: 60, 60
   orig: 60, 60
   offset: 0, 0
   index: -1
 floor
   rotate: false
-  xy: 466, 184
+  xy: 114, 60
   size: 50, 20
   split: 20, 22, 11, 5
   orig: 50, 20
@@ -51,16 +51,37 @@ floor
   index: -1
 player
   rotate: false
-  xy: 184, 72
+  xy: 184, 130
   size: 60, 60
   orig: 60, 60
   offset: 0, 0
   index: -1
 shortbox
   rotate: false
-  xy: 184, 134
+  xy: 184, 192
   size: 280, 70
   split: 0, 0, 0, 0
   orig: 280, 70
+  offset: 0, 0
+  index: -1
+testItem0
+  rotate: false
+  xy: 466, 206
+  size: 54, 56
+  orig: 54, 56
+  offset: 0, 0
+  index: -1
+testItem1
+  rotate: false
+  xy: 2, 2
+  size: 54, 56
+  orig: 54, 56
+  offset: 0, 0
+  index: -1
+testItem2
+  rotate: false
+  xy: 878, 1490
+  size: 54, 56
+  orig: 54, 56
   offset: 0, 0
   index: -1

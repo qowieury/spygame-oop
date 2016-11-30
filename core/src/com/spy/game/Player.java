@@ -11,6 +11,7 @@ import com.badlogic.gdx.physics.box2d.RayCastCallback;
 import com.badlogic.gdx.physics.box2d.World;
 import com.brashmonkey.spriter.Box;
 import com.spy.game.component.ComponentBox;
+import com.spy.game.component.ComponentItem;
 import com.sun.glass.ui.View;
 import com.uwsoft.editor.renderer.Overlap2D;
 import com.uwsoft.editor.renderer.components.DimensionsComponent;
@@ -23,6 +24,8 @@ import com.uwsoft.editor.renderer.physics.PhysicsBodyLoader;
 import com.uwsoft.editor.renderer.scripts.IScript;
 import com.uwsoft.editor.renderer.systems.render.Overlap2dRenderer;
 import com.uwsoft.editor.renderer.utils.ComponentRetriever;
+
+import java.util.ArrayList;
 
 /**
  * Created by qowie on 10/23/2016.
@@ -42,10 +45,12 @@ public class Player implements IScript {
 
     protected World world;
     protected Vector2 speed;
-    protected final Vector2 jumpSideSpeed = new Vector2(-20, 0);
+    protected Vector2 jumpSideSpeed = new Vector2(-20, 0);
     protected final float gravity = -500f;
-    protected final float jumpSpeed = 200f;
+    protected float jumpSpeed = 200f;
     protected boolean isJumping;
+
+    private ArrayList<ComponentItem> item =new ArrayList<ComponentItem>();
 
     public Player() {
 
@@ -57,6 +62,7 @@ public class Player implements IScript {
 
     @Override
     public void init(Entity entity) {
+
         transformComponent = ComponentRetriever.get(entity, TransformComponent.class);
         dimensionsComponent = ComponentRetriever.get(entity, DimensionsComponent.class);
         animationComponent = ComponentRetriever.get(entity, AnimationComponent.class);
@@ -66,7 +72,9 @@ public class Player implements IScript {
         polygonComponent.makeRectangle(dimensionsComponent.width,dimensionsComponent.height);
         dimensionsComponent.setPolygon(polygonComponent);
 
-
+        item.add(new ComponentItem(0));
+        item.add(new ComponentItem(1));
+        item.add(new ComponentItem(2));
         speed = new Vector2(80, 0);
     }
 
@@ -76,6 +84,7 @@ public class Player implements IScript {
         getInput(delta);
         doGravity(delta);
         rayCastButtom();
+        checkItemActive();
 
 
 
@@ -85,6 +94,38 @@ public class Player implements IScript {
 
     @Override
     public void dispose() {
+
+    }
+
+    protected void checkItemActive(){
+        if(item.get(0).isActive){ //up spped
+            speed.x = 160;
+            item.get(0).ranTime();
+
+        }else{
+            speed.x = 80;
+        }
+        if(item.get(1).isActive){ //high jump
+            this.jumpSpeed = 350f;
+            item.get(1).ranTime();
+        }else{
+            this.jumpSpeed = 200f;
+        }
+        if(item.get(2).isActive){ // ghost mode
+            item.get(2).ranTime();
+
+        }else{
+
+        }
+    }
+
+    public boolean collectItem(ComponentItem item){
+        if(this.item.get(item.getId()).isHave == false){
+            this.item.get(item.getId()).isHave = true;
+            return true;
+        }else {
+            return false;
+        }
 
     }
 
@@ -100,6 +141,8 @@ public class Player implements IScript {
         }
 
     }
+
+
 
 
     protected void rayCastButtom() {
@@ -148,10 +191,30 @@ public class Player implements IScript {
                 }
             }
 
+
+
         }
 
         if (Gdx.input.isKeyPressed(Input.Keys.S)) {
 
+        }
+
+        if(Gdx.input.isKeyJustPressed(Input.Keys.NUM_1)){
+            if(item.get(0).isHave){
+                item.get(0).use();
+
+            }
+
+        }
+        if(Gdx.input.isKeyJustPressed(Input.Keys.NUM_2)){
+            if(item.get(1).isHave){
+                item.get(1).use();
+            }
+        }
+        if(Gdx.input.isKeyJustPressed(Input.Keys.NUM_3)){
+            if(item.get(2).isHave){
+                item.get(2).use();
+            }
         }
     }
 
