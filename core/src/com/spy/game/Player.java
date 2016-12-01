@@ -51,6 +51,7 @@ public class Player implements IScript {
     protected boolean isJumping;
 
     private ArrayList<ComponentItem> item =new ArrayList<ComponentItem>();
+    public boolean isHiding =false;
 
     public Player() {
 
@@ -112,10 +113,11 @@ public class Player implements IScript {
             this.jumpSpeed = 200f;
         }
         if(item.get(2).isActive){ // ghost mode
+            this.isHiding = true;
             item.get(2).ranTime();
 
         }else{
-
+            this.isHiding = false;
         }
     }
 

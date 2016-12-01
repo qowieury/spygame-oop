@@ -307,7 +307,9 @@ public class BaseStage extends ApplicationAdapter {
             for (int i = 0; i < enemy.size(); i++) {
                 if (enemy.get(i).getPolygon() != null) {
                     if (collisionListener.isCollision(player.getPolygon(), enemy.get(i).getPolygon())) {
-                        System.out.println("player and enemy " + i);
+                        if(!player.isHiding){
+                            System.out.println("player and enemy " + i);
+                        }
                     }
                 }
             }
