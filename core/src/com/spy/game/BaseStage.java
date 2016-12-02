@@ -30,6 +30,8 @@ public class BaseStage extends ApplicationAdapter {
     protected ArrayList<ComponentBase> base = new ArrayList<ComponentBase>();
     protected ArrayList<ComponentItem> item = new ArrayList<ComponentItem>();
 
+    protected ArrayList<ComponentGUI> GUI = new ArrayList<ComponentGUI>();
+
     protected CollisionListener collisionListener = new CollisionListener();
 
 
@@ -56,6 +58,17 @@ public class BaseStage extends ApplicationAdapter {
 
 
     }
+
+    protected void initGUI(){
+        for (int i =0;i<3;i++){
+            GUI.add(new ComponentGUI());
+            root.getChild("guiItem"+i).addScript(GUI.get(i));
+        }
+
+
+    }
+
+
 
     protected void initBoxToOverride() {
         initBox(4);
