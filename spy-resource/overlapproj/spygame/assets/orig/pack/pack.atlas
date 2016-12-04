@@ -20,21 +20,21 @@ backgroundblue
   index: -1
 base
   rotate: false
-  xy: 2, 1738
+  xy: 2, 1658
   size: 110, 20
   orig: 110, 20
   offset: 0, 0
   index: -1
 bigbox
   rotate: false
-  xy: 1428, 1558
+  xy: 1596, 1478
   size: 90, 200
   orig: 90, 200
   offset: 0, 0
   index: -1
 box
   rotate: false
-  xy: 1246, 1578
+  xy: 1414, 1498
   size: 180, 180
   split: 0, 0, 0, 0
   orig: 180, 180
@@ -42,28 +42,28 @@ box
   index: -1
 box
   rotate: false
-  xy: 1246, 1578
+  xy: 1414, 1498
   size: 180, 180
   orig: 180, 180
   offset: 0, 0
   index: -1
 door
   rotate: false
-  xy: 1520, 1448
+  xy: 1688, 1368
   size: 40, 310
   orig: 40, 310
   offset: 0, 0
   index: -1
 enemy
   rotate: false
-  xy: 166, 1698
+  xy: 334, 1618
   size: 60, 60
   orig: 60, 60
   offset: 0, 0
   index: -1
 floor
   rotate: false
-  xy: 114, 1738
+  xy: 114, 1658
   size: 50, 20
   split: 20, 22, 11, 5
   orig: 50, 20
@@ -71,7 +71,7 @@ floor
   index: -1
 longbox
   rotate: false
-  xy: 290, 1688
+  xy: 458, 1608
   size: 560, 70
   orig: 560, 70
   offset: 0, 0
@@ -85,14 +85,14 @@ newfloor
   index: -1
 player
   rotate: false
-  xy: 228, 1698
+  xy: 396, 1618
   size: 60, 60
   orig: 60, 60
   offset: 0, 0
   index: -1
 shortbox
   rotate: false
-  xy: 852, 1688
+  xy: 1020, 1608
   size: 280, 70
   split: 0, 0, 0, 0
   orig: 280, 70
@@ -100,16 +100,37 @@ shortbox
   index: -1
 shortbox
   rotate: false
-  xy: 852, 1688
+  xy: 1020, 1608
   size: 280, 70
   orig: 280, 70
   offset: 0, 0
   index: -1
 smallbox
   rotate: false
-  xy: 1134, 1658
+  xy: 1302, 1578
   size: 110, 100
   orig: 110, 100
+  offset: 0, 0
+  index: -1
+testItem0
+  rotate: false
+  xy: 166, 1622
+  size: 54, 56
+  orig: 54, 56
+  offset: 0, 0
+  index: -1
+testItem1
+  rotate: false
+  xy: 222, 1622
+  size: 54, 56
+  orig: 54, 56
+  offset: 0, 0
+  index: -1
+testItem2
+  rotate: false
+  xy: 278, 1622
+  size: 54, 56
+  orig: 54, 56
   offset: 0, 0
   index: -1
 

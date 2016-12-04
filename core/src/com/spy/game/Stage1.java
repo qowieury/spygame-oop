@@ -26,6 +26,31 @@ public class Stage1 extends BaseStage {
 
 
     }
+
+    protected void initBoxToOverride() {
+        initBox(1);
+    }
+
+    protected void initWallToOverride() {
+        initWall(2);
+    }
+
+    protected void initDoorToOverride(){
+        initDoor(0);
+    }
+
+    protected void initBaseToOverride(){
+        initBase(0);
+    }
+
+    protected void initFloorToOverride() {
+        initFloor(5);
+    }
+
+    protected void initItemToOverride(){
+        initItem(0,0,0);
+    }
+
     @Override
     protected void loadSceneByName(){
         sceneLoader.loadScene(STAGE_NAME,viewport);
@@ -33,14 +58,14 @@ public class Stage1 extends BaseStage {
     @Override
     protected void addScriptToChildOfRoot(){
         root.getChild("player").addScript(player);
-        root.getChild("enemy0").addScript(enemy.get(0));
-        root.getChild("enemy1").addScript(enemy.get(1));
+       // root.getChild("enemy0").addScript(enemy.get(0));
+       // root.getChild("enemy1").addScript(enemy.get(1));
 
     }
     @Override
     protected void createEnemy(){
-        enemy.add(new Enemy(120, 180, sceneLoader.world));
-        enemy.add(new Enemy(180, 240, sceneLoader.world));
+      //  enemy.add(new Enemy(120, 180, sceneLoader.world));
+     //   enemy.add(new Enemy(180, 240, sceneLoader.world));
 
     }
     @Override

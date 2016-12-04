@@ -2,6 +2,7 @@ package com.spy.game.desktop;
 
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
+import com.spy.game.BaseStage;
 import com.spy.game.Spy;
 import com.spy.game.Stage1;
 
@@ -11,6 +12,6 @@ public class DesktopLauncher {
 		config.width = 1024;
 		config.height = 576;
 		config.title = "SpyGame Test";
-		new LwjglApplication(new Stage1(), config);
+		new LwjglApplication(new BaseStage(), config);
 	}
 }
