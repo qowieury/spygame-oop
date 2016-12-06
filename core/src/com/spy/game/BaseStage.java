@@ -45,6 +45,9 @@ public class BaseStage extends ApplicationAdapter {
     public void create() {
 
         loadSceneAndViewport();
+
+
+
         createPlayer();
         createEnemy();
         initWallToOverride();
@@ -54,14 +57,17 @@ public class BaseStage extends ApplicationAdapter {
         initBaseToOverride();
         initItemToOverride();
 
+        initGUI();
+
         addScriptToChildOfRoot();
+
 
 
     }
 
     protected void initGUI(){
         for (int i =0;i<3;i++){
-            GUI.add(new ComponentGUI());
+            GUI.add(new ComponentGUI(i,player));
             root.getChild("guiItem"+i).addScript(GUI.get(i));
         }
 
