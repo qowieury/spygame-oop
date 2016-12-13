@@ -253,7 +253,7 @@ public class Player implements IScript {
     }
 
     protected void jump() {
-        speed.y = jumpSpeed;
+        speed.y = jumpSpeed+50;
         isJumping = true;
 
     }

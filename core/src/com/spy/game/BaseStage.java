@@ -16,7 +16,7 @@ import java.util.ArrayList;
  * Created by qowie on 11/11/2016.
  */
 public class BaseStage extends ApplicationAdapter {
-    protected String STAGE_NAME = "MainScene";
+    protected String STAGE_NAME = "Stage1";
     protected final float VIEWPORT_X = 360;
     protected final float VIEWPORT_Y = 200;
 
@@ -40,6 +40,8 @@ public class BaseStage extends ApplicationAdapter {
 
     private float currentTime =0;
 
+    //protected float enemy
+
 
     @Override
     public void create() {
@@ -57,7 +59,7 @@ public class BaseStage extends ApplicationAdapter {
         initBaseToOverride();
         initItemToOverride();
 
-        initGUI();
+        //initGUI();
 
         addScriptToChildOfRoot();
 
@@ -65,7 +67,7 @@ public class BaseStage extends ApplicationAdapter {
 
     }
 
-    protected void initGUI(){
+  /*  protected void initGUI(){
         for (int i =0;i<3;i++){
             GUI.add(new ComponentGUI(i,player));
             root.getChild("guiItem"+i).addScript(GUI.get(i));
@@ -73,31 +75,31 @@ public class BaseStage extends ApplicationAdapter {
 
 
     }
-
+*/
 
 
     protected void initBoxToOverride() {
-        initBox(4);
+        initBox(1);
     }
 
     protected void initWallToOverride() {
-        initWall(1);
+        initWall(16);
     }
 
     protected void initDoorToOverride(){
-        initDoor(3);
+        initDoor(0);
     }
 
     protected void initBaseToOverride(){
-        initBase(1);
+        initBase(0);
     }
 
     protected void initFloorToOverride() {
-        initFloor(5);
+        initFloor(26);
     }
 
     protected void initItemToOverride(){
-        initItem(1,1,1);
+        initItem(1,1,0);
     }
 
     protected void initItem(int a,int b,int c){
@@ -174,15 +176,28 @@ public class BaseStage extends ApplicationAdapter {
 
     protected void addScriptToChildOfRoot() {
         root.getChild("player").addScript(player);
-        root.getChild("enemy0").addScript(enemy.get(0));
-        root.getChild("enemy1").addScript(enemy.get(1));
+        for(int i=0;i<enemy.size();i++){
+            root.getChild("enemy"+i).addScript(enemy.get(i));
+        }
+
+        //root.getChild("enemy1").addScript(enemy.get(1));
 
     }
 
     protected void createEnemy() {
-        enemy.add(new Enemy(120, 180, sceneLoader.world));
-        enemy.add(new Enemy(180, 240, sceneLoader.world));
 
+        enemy.add(new Enemy(465, 755, sceneLoader.world));
+        enemy.add(new Enemy(1180, 1260, sceneLoader.world));
+        enemy.add(new Enemy(1050, 1128, sceneLoader.world));
+        enemy.add(new Enemy(1085, 1161, sceneLoader.world));
+        enemy.add(new Enemy(1000, 1360, sceneLoader.world));
+        enemy.add(new Enemy(1630, 1700, sceneLoader.world));
+        enemy.add(new Enemy(1380, 1770, sceneLoader.world));
+        enemy.add(new Enemy(2027, 2092, sceneLoader.world));
+        enemy.add(new Enemy(2400, 2530, sceneLoader.world));
+        enemy.add(new Enemy(3200, 4600, sceneLoader.world));
+        enemy.add(new Enemy(3107, 3195, sceneLoader.world));
+        enemy.add(new Enemy(2061, 3083, sceneLoader.world));
     }
 
     protected void createPlayer() {

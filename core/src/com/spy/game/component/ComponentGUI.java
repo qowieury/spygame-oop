@@ -18,10 +18,12 @@ import sun.security.pkcs11.P11TlsKeyMaterialGenerator;
 public class ComponentGUI extends Player {
     private Player player;
     private int ID;
+    private boolean isHave;
 
     public ComponentGUI(int id, Player player){
         ID = id;
         this.player = player;
+        isHave = false;
     }
 
     @Override
