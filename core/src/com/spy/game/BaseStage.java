@@ -37,6 +37,8 @@ public class BaseStage extends ApplicationAdapter {
     protected ArrayList<ComponentBase> base = new ArrayList<ComponentBase>();
     protected ArrayList<ComponentItem> item = new ArrayList<ComponentItem>();
 
+    protected ArrayList<ComponentComputer> com = new ArrayList<ComponentComputer>();
+
     protected ArrayList<ComponentGUI> GUI = new ArrayList<ComponentGUI>();
 
     protected CollisionListener collisionListener = new CollisionListener();
@@ -76,6 +78,8 @@ public class BaseStage extends ApplicationAdapter {
         initBaseToOverride();
         initItemToOverride();
 
+        initComToOverride();
+
         //initGUI();
 
         addScriptToChildOfRoot();
@@ -105,7 +109,7 @@ public class BaseStage extends ApplicationAdapter {
 
     }
 */
-
+    protected void initComToOverride(){initCom(3);}
 
     protected void initBoxToOverride() {
         initBox(1 + 6+4);
@@ -129,6 +133,18 @@ public class BaseStage extends ApplicationAdapter {
 
     protected void initItemToOverride(){
         initItem(1+1+1 ,1+0+1,0 +1+1);
+    }
+
+    protected void initCom(int count){
+        for (int i = 0; i < count; i++) {
+            com.add(new ComponentComputer(9,sceneLoader.world));
+        }
+
+        for (int i = 0; i < count; i++) {
+            //System.out.println("com "+i);
+            root.getChild("com" + i).addScript(com.get(i));
+        }
+
     }
 
     protected void initItem(int a,int b,int c){
@@ -213,6 +229,7 @@ public class BaseStage extends ApplicationAdapter {
     protected void addScriptToChildOfRoot() {
         root.getChild("player").addScript(player);
         for(int i=0;i<enemy.size();i++){
+            System.out.println("enemy "+i);
             root.getChild("enemy"+i).addScript(enemy.get(i));
         }
 
@@ -235,7 +252,7 @@ public class BaseStage extends ApplicationAdapter {
         enemy.add(new Enemy(3107, 3195, sceneLoader.world));
         enemy.add(new Enemy(2061, 3083, sceneLoader.world));
         //-------------------------end stage1----------------
-        /*
+
         enemy.add(new Enemy(7406, 7583, sceneLoader.world));
         enemy.add(new Enemy(7618, 7964, sceneLoader.world));
         enemy.add(new Enemy(8289, 8366, sceneLoader.world));
@@ -261,7 +278,7 @@ public class BaseStage extends ApplicationAdapter {
         enemy.add(new Enemy(12525, 12720, sceneLoader.world));
         enemy.add(new Enemy(13123, 13241, sceneLoader.world));
         //---------------------end stage2--------------------
-        */
+
 
     }
 
@@ -293,9 +310,36 @@ public class BaseStage extends ApplicationAdapter {
         detectBoxCollisBase();
         detectBoxCollisWall();
 
+        detectPlayerCollisCom();
+
         currentTime = currentTime + Gdx.graphics.getDeltaTime();
         System.out.println(currentTime);
 
+
+    }
+    protected void detectPlayerCollisCom(){
+        if (player.getPolygon() != null) {
+            for (int i = 0; i < com.size(); i++) {
+                if (com.get(i).getPolygon() != null) {
+                    if (collisionListener.isCollision(player.getPolygon(), com.get(i).getPolygon())) {
+                        System.out.println("player and com" + i);
+                        if(playerCurrentStage == 1 ){
+                            playerCurrentStage++;
+                            player.transformComponent.x = 7200;
+                            player.transformComponent.y = 100;
+                        }else if(playerCurrentStage == 2){
+                            playerCurrentStage++;
+                            player.transformComponent.x = 15400;
+                            player.transformComponent.y = -400;
+
+                        }
+
+
+
+                    }
+                }
+            }
+        }
 
     }
 
