@@ -35,9 +35,11 @@ public class ComponentItem extends ComponentBox {
 
     @Override
     public void act(float delta) {
+
         setPolygonPostion();
-        doGravity(delta);
-        rayCastButtom();
+        //doGravity(delta);
+        //rayCastButtom();
+
 
 
     }

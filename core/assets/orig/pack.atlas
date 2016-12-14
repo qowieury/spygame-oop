@@ -40,13 +40,6 @@ box
   orig: 180, 180
   offset: 0, 0
   index: -1
-box
-  rotate: false
-  xy: 1414, 1498
-  size: 180, 180
-  orig: 180, 180
-  offset: 0, 0
-  index: -1
 door
   rotate: false
   xy: 1688, 1368
@@ -131,6 +124,20 @@ testItem2
   xy: 278, 1622
   size: 54, 56
   orig: 54, 56
+  offset: 0, 0
+  index: -1
+wallleft
+  rotate: false
+  xy: 1730, 278
+  size: 170, 1400
+  orig: 170, 1400
+  offset: 0, 0
+  index: -1
+wallright
+  rotate: false
+  xy: 1404, 96
+  size: 170, 1400
+  orig: 170, 1400
   offset: 0, 0
   index: -1
 

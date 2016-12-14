@@ -31,7 +31,7 @@ import java.util.ArrayList;
  * Created by qowie on 10/23/2016.
  */
 public class Player implements IScript {
-
+    protected float GDXTIME=0;
 
     protected TransformComponent transformComponent;
     protected DimensionsComponent dimensionsComponent;
@@ -81,10 +81,10 @@ public class Player implements IScript {
 
     @Override
     public void act(float delta) {
-        setPolygonPostion();
+        rayCastButtom();setPolygonPostion();
         getInput(delta);
         doGravity(delta);
-        rayCastButtom();
+
         checkItemActive();
 
 
@@ -173,8 +173,13 @@ public class Player implements IScript {
     }
 
     protected void doGravity(float delta) {
-        speed.y += gravity * delta;
-        transformComponent.y += speed.y * delta;
+        if(GDXTIME >=0.1){
+            speed.y += gravity * delta;
+            transformComponent.y += speed.y * delta;
+        }else{
+            GDXTIME += Gdx.graphics.getDeltaTime();
+        }
+
     }
 
     protected void getInput(float delta) {

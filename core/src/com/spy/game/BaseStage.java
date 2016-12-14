@@ -7,9 +7,11 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.spy.game.component.*;
+
 import com.uwsoft.editor.renderer.SceneLoader;
 import com.uwsoft.editor.renderer.utils.ItemWrapper;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -17,8 +19,13 @@ import java.util.ArrayList;
  */
 public class BaseStage extends ApplicationAdapter {
     protected String STAGE_NAME = "Stage1";
-    protected final float VIEWPORT_X = 360;
-    protected final float VIEWPORT_Y = 200;
+
+    private int playerCurrentStage =1;
+    //protected final float VIEWPORT_X = 360;
+    //protected final float VIEWPORT_Y = 200;
+
+    protected final float VIEWPORT_X = 540;
+    protected final float VIEWPORT_Y = 300;
 
     protected SceneLoader sceneLoader;
     protected Player player;
@@ -42,9 +49,19 @@ public class BaseStage extends ApplicationAdapter {
 
     //protected float enemy
 
+    private SaveFileIO saveFileIO;
+
 
     @Override
     public void create() {
+        /*try {
+            saveFileIO = new SaveFileIO();
+        }catch (IOException ex){
+            throw new RuntimeException();
+
+
+        }
+*/
 
         loadSceneAndViewport();
 
@@ -62,9 +79,21 @@ public class BaseStage extends ApplicationAdapter {
         //initGUI();
 
         addScriptToChildOfRoot();
+        //enableTransForm();
 
+    }
 
-
+    private void enableTransForm(){
+        player.transformComponent.enableTransform();
+        for(int i=0;i<enemy.size();i++){
+            enemy.get(i).transformComponent.enableTransform();
+        }
+        for(int i=0;i<box.size();i++){
+            box.get(i).transformComponent.enableTransform();
+        }
+        for(int i=0;i<item.size();i++){
+            item.get(i).transformComponent.enableTransform();
+        }
     }
 
   /*  protected void initGUI(){
@@ -79,40 +108,43 @@ public class BaseStage extends ApplicationAdapter {
 
 
     protected void initBoxToOverride() {
-        initBox(1);
+        initBox(1 + 6+4);
     }
 
     protected void initWallToOverride() {
-        initWall(16);
+        initWall(16 + 11+13);
     }
 
     protected void initDoorToOverride(){
-        initDoor(0);
+        initDoor(0 + 5+4);
     }
 
     protected void initBaseToOverride(){
-        initBase(0);
+        initBase(0 + 5+4);
     }
 
     protected void initFloorToOverride() {
-        initFloor(26);
+        initFloor(26 +43+42);
     }
 
     protected void initItemToOverride(){
-        initItem(1,1,0);
+        initItem(1+1+1 ,1+0+1,0 +1+1);
     }
 
     protected void initItem(int a,int b,int c){
         for (int i =0;i<a;i++){
             item.add(new ComponentItem(0,sceneLoader.world));
+            System.out.println("item0-"+i);
             root.getChild("itemID0-"+(i)).addScript(item.get(item.size()-1));
         }
         for (int i =0;i<b;i++){
             item.add(new ComponentItem(1,sceneLoader.world));
+            System.out.println("item1- "+i);
             root.getChild("itemID1-"+(i)).addScript(item.get(item.size()-1));
         }
         for (int i =0;i<c;i++){
             item.add(new ComponentItem(2,sceneLoader.world));
+            System.out.println("item2- "+i);
             root.getChild("itemID2-"+(i)).addScript(item.get(item.size()-1));
         }
     }
@@ -123,6 +155,7 @@ public class BaseStage extends ApplicationAdapter {
         }
 
         for (int i = 0; i < boxCount; i++) {
+            //System.out.println("box "+i);
             root.getChild("box" + i).addScript(box.get(i));
         }
     }
@@ -133,6 +166,7 @@ public class BaseStage extends ApplicationAdapter {
         }
 
         for (int i = 0; i < baseCount; i++) {
+            //System.out.println("base "+i);
             root.getChild("base" + i).addScript(base.get(i));
         }
 
@@ -144,6 +178,7 @@ public class BaseStage extends ApplicationAdapter {
     }
 
         for (int i = 0; i < doorCount; i++) {
+            //System.out.println("door "+i);
             root.getChild("door" + i).addScript(door.get(i));
         }
 
@@ -156,11 +191,11 @@ public class BaseStage extends ApplicationAdapter {
         }
 
         for (int i = 0; i < floorCount; i++) {
+            //System.out.println("floor "+i);
             root.getChild("floor" + i).addScript(floor.get(i));
         }
 
     }
-
 
     protected void initWall(int wallCount) {
 
@@ -169,6 +204,7 @@ public class BaseStage extends ApplicationAdapter {
         }
 
         for (int i = 0; i < wallCount; i++) {
+           //System.out.println("wall "+i);
             root.getChild("wall" + i).addScript(wall.get(i));
         }
 
@@ -198,6 +234,35 @@ public class BaseStage extends ApplicationAdapter {
         enemy.add(new Enemy(3200, 4600, sceneLoader.world));
         enemy.add(new Enemy(3107, 3195, sceneLoader.world));
         enemy.add(new Enemy(2061, 3083, sceneLoader.world));
+        //-------------------------end stage1----------------
+        /*
+        enemy.add(new Enemy(7406, 7583, sceneLoader.world));
+        enemy.add(new Enemy(7618, 7964, sceneLoader.world));
+        enemy.add(new Enemy(8289, 8366, sceneLoader.world));
+        enemy.add(new Enemy(8186, 8258, sceneLoader.world));
+        enemy.add(new Enemy(8094, 8166, sceneLoader.world));
+        enemy.add(new Enemy(8003, 8078, sceneLoader.world));
+        enemy.add(new Enemy(7918, 7990, sceneLoader.world));
+        enemy.add(new Enemy(8440, 8549, sceneLoader.world));
+        enemy.add(new Enemy(8549, 8668, sceneLoader.world));
+        enemy.add(new Enemy(8668, 8773, sceneLoader.world));
+        enemy.add(new Enemy(8773, 8870, sceneLoader.world));///-----
+        enemy.add(new Enemy(8870, 8980, sceneLoader.world));
+
+        enemy.add(new Enemy(8980, 9082, sceneLoader.world));
+        enemy.add(new Enemy(9082, 9159, sceneLoader.world));
+        enemy.add(new Enemy(9159, 9257, sceneLoader.world));
+        enemy.add(new Enemy(9400, 9600, sceneLoader.world));
+        enemy.add(new Enemy(9913, 10035, sceneLoader.world));
+        enemy.add(new Enemy(10630, 10800, sceneLoader.world));
+        enemy.add(new Enemy(11415, 11589, sceneLoader.world));
+
+        enemy.add(new Enemy(12128, 12447, sceneLoader.world));
+        enemy.add(new Enemy(12525, 12720, sceneLoader.world));
+        enemy.add(new Enemy(13123, 13241, sceneLoader.world));
+        //---------------------end stage2--------------------
+        */
+
     }
 
     protected void createPlayer() {
@@ -343,6 +408,7 @@ public class BaseStage extends ApplicationAdapter {
                     if (collisionListener.isCollision(player.getPolygon(), enemy.get(i).getPolygon())) {
                         if(!player.isHiding){
                             System.out.println("player and enemy " + i);
+
                         }
                     }
                 }
@@ -350,8 +416,14 @@ public class BaseStage extends ApplicationAdapter {
         }
     }
 
+    private void changeStageTo(int stage){
+        playerCurrentStage = stage;
+
+    }
+
     protected void loadSceneRender() {
         Gdx.gl.glClearColor(1, 1, 0, 1);
+        //GL20.GL_
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         sceneLoader.getEngine().update(Gdx.graphics.getDeltaTime());
     }

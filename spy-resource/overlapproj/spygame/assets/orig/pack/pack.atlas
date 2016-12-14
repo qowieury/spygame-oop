@@ -126,14 +126,14 @@ testItem2
   orig: 54, 56
   offset: 0, 0
   index: -1
-wall2
+wallleft
   rotate: false
   xy: 1730, 278
   size: 170, 1400
   orig: 170, 1400
   offset: 0, 0
   index: -1
-wall3
+wallright
   rotate: false
   xy: 1404, 96
   size: 170, 1400
