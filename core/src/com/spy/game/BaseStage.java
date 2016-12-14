@@ -2,6 +2,7 @@ package com.spy.game;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.utils.viewport.FitViewport;
@@ -48,6 +49,7 @@ public class BaseStage extends ApplicationAdapter {
     protected ItemWrapper root;
 
     private float currentTime =0;
+    private boolean isStarted = false;
 
     //protected float enemy
 
@@ -280,6 +282,25 @@ public class BaseStage extends ApplicationAdapter {
         //---------------------end stage2--------------------
 
 
+        enemy.add(new Enemy(16022, 16210, sceneLoader.world));
+        enemy.add(new Enemy(15656, 15725, sceneLoader.world));
+        enemy.add(new Enemy(15598, 15682, sceneLoader.world));
+        enemy.add(new Enemy(15475, 15584, sceneLoader.world));
+        enemy.add(new Enemy(15615, 15773, sceneLoader.world));
+        enemy.add(new Enemy(15657, 15726, sceneLoader.world));
+        enemy.add(new Enemy(15487, 15580, sceneLoader.world));
+        enemy.add(new Enemy(16407, 15580, sceneLoader.world));
+        enemy.add(new Enemy(16407, 16637, sceneLoader.world));
+        enemy.add(new Enemy(16899, 167650, sceneLoader.world));
+        enemy.add(new Enemy(16785, 16919, sceneLoader.world));///-----
+        enemy.add(new Enemy(18440, 18574, sceneLoader.world));
+
+        enemy.add(new Enemy(18224, 18322, sceneLoader.world));
+        enemy.add(new Enemy(17188, 17499, sceneLoader.world));
+        enemy.add(new Enemy(15580, 15778, sceneLoader.world));
+        //---------------------end stage3--------------------
+
+
     }
 
     protected void createPlayer() {
@@ -312,8 +333,14 @@ public class BaseStage extends ApplicationAdapter {
 
         detectPlayerCollisCom();
 
-        currentTime = currentTime + Gdx.graphics.getDeltaTime();
-        System.out.println(currentTime);
+        if(isStarted) {
+            currentTime = currentTime + Gdx.graphics.getDeltaTime();
+            System.out.println(currentTime);
+        }else{
+            if(Gdx.input.isKeyPressed(Input.Keys.W) ||Gdx.input.isKeyPressed(Input.Keys.A) ||Gdx.input.isKeyPressed(Input.Keys.S) ||Gdx.input.isKeyPressed(Input.Keys.D) ){
+                isStarted = true;
+            }
+        }
 
 
     }
