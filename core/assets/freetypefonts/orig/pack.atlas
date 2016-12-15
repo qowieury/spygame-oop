@@ -1,0 +1,219 @@
+
+pack.png
+size: 2048,2048
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+background1
+  rotate: false
+  xy: 2, 1330
+  size: 1400, 700
+  orig: 1400, 700
+  offset: 0, 0
+  index: -1
+backgroundblue
+  rotate: false
+  xy: 2, 628
+  size: 1400, 700
+  orig: 1400, 700
+  offset: 0, 0
+  index: -1
+base
+  rotate: false
+  xy: 998, 362
+  size: 110, 20
+  orig: 110, 20
+  offset: 0, 0
+  index: -1
+bigbox
+  rotate: false
+  xy: 998, 160
+  size: 90, 200
+  split: 0, 0, 69, 81
+  orig: 90, 200
+  offset: 0, 0
+  index: -1
+box
+  rotate: false
+  xy: 1404, 1850
+  size: 180, 180
+  split: 0, 0, 0, 0
+  orig: 180, 180
+  offset: 0, 0
+  index: -1
+commmm
+  rotate: false
+  xy: 807, 115
+  size: 90, 50
+  orig: 90, 50
+  offset: 0, 0
+  index: -1
+door
+  rotate: false
+  xy: 2, 144
+  size: 40, 310
+  orig: 40, 310
+  offset: 0, 0
+  index: -1
+enemy
+  rotate: false
+  xy: 899, 105
+  size: 60, 60
+  orig: 60, 60
+  offset: 0, 0
+  index: -1
+floor
+  rotate: false
+  xy: 1110, 362
+  size: 50, 20
+  split: 20, 22, 11, 5
+  orig: 50, 20
+  offset: 0, 0
+  index: -1
+item-hide
+  rotate: false
+  xy: 1090, 304
+  size: 56, 56
+  orig: 56, 56
+  offset: 0, 0
+  index: -1
+item-jump
+  rotate: false
+  xy: 1148, 304
+  size: 56, 56
+  orig: 56, 56
+  offset: 0, 0
+  index: -1
+item-run
+  rotate: false
+  xy: 1206, 326
+  size: 56, 56
+  orig: 56, 56
+  offset: 0, 0
+  index: -1
+longbox
+  rotate: false
+  xy: 1392, 376
+  size: 560, 70
+  orig: 560, 70
+  offset: 0, 0
+  index: -1
+longwall
+  rotate: false
+  xy: 1758, 1510
+  size: 30, 520
+  orig: 30, 520
+  offset: 0, 0
+  index: -1
+newfloor
+  rotate: false
+  xy: 2, 456
+  size: 1400, 170
+  orig: 1400, 170
+  offset: 0, 0
+  index: -1
+player
+  rotate: false
+  xy: 807, 53
+  size: 60, 60
+  orig: 60, 60
+  offset: 0, 0
+  index: -1
+shortbox
+  rotate: false
+  xy: 998, 384
+  size: 280, 70
+  split: 0, 0, 0, 0
+  orig: 280, 70
+  offset: 0, 0
+  index: -1
+shortbox
+  rotate: false
+  xy: 998, 384
+  size: 280, 70
+  orig: 280, 70
+  offset: 0, 0
+  index: -1
+smallbox
+  rotate: false
+  xy: 1280, 354
+  size: 110, 100
+  orig: 110, 100
+  offset: 0, 0
+  index: -1
+startA
+  rotate: false
+  xy: 44, 167
+  size: 952, 287
+  orig: 952, 287
+  offset: 0, 0
+  index: -1
+startB
+  rotate: false
+  xy: 44, 2
+  size: 761, 163
+  orig: 761, 163
+  offset: 0, 0
+  index: -1
+testItem0
+  rotate: false
+  xy: 1576, 572
+  size: 54, 56
+  orig: 54, 56
+  offset: 0, 0
+  index: -1
+testItem1
+  rotate: false
+  xy: 1632, 572
+  size: 54, 56
+  orig: 54, 56
+  offset: 0, 0
+  index: -1
+testItem2
+  rotate: false
+  xy: 1688, 572
+  size: 54, 56
+  orig: 54, 56
+  offset: 0, 0
+  index: -1
+wallleft
+  rotate: false
+  xy: 1404, 448
+  size: 170, 1400
+  orig: 170, 1400
+  offset: 0, 0
+  index: -1
+wallright
+  rotate: false
+  xy: 1586, 630
+  size: 170, 1400
+  orig: 170, 1400
+  offset: 0, 0
+  index: -1
+
+pack2.png
+size: 1024,2048
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+SaraFullSheet
+  rotate: false
+  xy: 2, 2
+  size: 832, 1344
+  split: 0, 263, 646, 568
+  orig: 832, 1344
+  offset: 0, 0
+  index: -1
+
+pack3.png
+size: 2048,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+computer
+  rotate: false
+  xy: 2, 2
+  size: 1400, 700
+  orig: 1400, 700
+  offset: 0, 0
+  index: -1
