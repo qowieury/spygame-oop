@@ -3,6 +3,7 @@ package com.spy.game;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.math.Polygon;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
@@ -53,16 +54,21 @@ public class Player implements IScript {
     public ArrayList<ComponentItem> item =new ArrayList<ComponentItem>();
     public boolean isHiding =false;
 
+    private Sound sound;
+
     public Player() {
 
     }
 
     public Player(World world) {
+        sound = Gdx.audio.newSound(Gdx.files.internal("PlayerJump.mp3"));
         this.world = world;
     }
 
     @Override
     public void init(Entity entity) {
+
+
 
         transformComponent = ComponentRetriever.get(entity, TransformComponent.class);
         dimensionsComponent = ComponentRetriever.get(entity, DimensionsComponent.class);
@@ -186,6 +192,7 @@ public class Player implements IScript {
 
     protected void getInput(float delta) {
         if (Gdx.input.isKeyJustPressed(Input.Keys.W) && isJumping == false) {
+            sound.play();
             jump();
         }
         if (Gdx.input.isKeyPressed(Input.Keys.A)) {
