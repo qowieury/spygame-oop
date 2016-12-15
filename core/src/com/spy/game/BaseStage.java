@@ -67,6 +67,8 @@ public class BaseStage extends ApplicationAdapter {
 
     @Override
     public void create() {
+        sound = Gdx.audio.newSound(Gdx.files.internal("BGM.mp3"));
+        sound.play();
         try {
             saveFileIO = new SaveFileIO();
         }catch (IOException ex){
@@ -102,8 +104,7 @@ public class BaseStage extends ApplicationAdapter {
         winScene = new WinScene();
         root.getChild("youwin").addScript(winScene);
 
-        sound = Gdx.audio.newSound(Gdx.files.internal("BGM.mp3"));
-        sound.play();
+
 
         //enableTransForm();
 
