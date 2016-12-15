@@ -82,7 +82,7 @@ public class BaseStage extends ApplicationAdapter {
 
         initComToOverride();
 
-        //initGUI();
+        initGUI();
 
         addScriptToChildOfRoot();
         //enableTransForm();
@@ -102,15 +102,16 @@ public class BaseStage extends ApplicationAdapter {
         }
     }
 
-  /*  protected void initGUI(){
+    protected void initGUI(){
         for (int i =0;i<3;i++){
             GUI.add(new ComponentGUI(i,player));
+            System.out.println("GUI "+i);
             root.getChild("guiItem"+i).addScript(GUI.get(i));
         }
 
 
     }
-*/
+
     protected void initComToOverride(){initCom(3);}
 
     protected void initBoxToOverride() {
@@ -297,7 +298,7 @@ public class BaseStage extends ApplicationAdapter {
 
         enemy.add(new Enemy(18224, 18322, sceneLoader.world));
         enemy.add(new Enemy(17188, 17499, sceneLoader.world));
-        enemy.add(new Enemy(15580, 15778, sceneLoader.world));
+        //enemy.add(new Enemy(15580, 15778, sceneLoader.world));
         //---------------------end stage3--------------------
 
 
@@ -358,6 +359,9 @@ public class BaseStage extends ApplicationAdapter {
                             playerCurrentStage++;
                             player.transformComponent.x = 15400;
                             player.transformComponent.y = -400;
+
+                        }else if(playerCurrentStage ==3){
+                            win();
 
                         }
 
@@ -479,7 +483,7 @@ public class BaseStage extends ApplicationAdapter {
                     if (collisionListener.isCollision(player.getPolygon(), enemy.get(i).getPolygon())) {
                         if(!player.isHiding){
                             System.out.println("player and enemy " + i);
-
+                            die();
                         }
                     }
                 }
@@ -487,10 +491,7 @@ public class BaseStage extends ApplicationAdapter {
         }
     }
 
-    private void changeStageTo(int stage){
-        playerCurrentStage = stage;
 
-    }
 
     protected void loadSceneRender() {
         Gdx.gl.glClearColor(1, 1, 0, 1);
@@ -501,6 +502,13 @@ public class BaseStage extends ApplicationAdapter {
 
     protected void cameraFollowPlayer() {
         ((OrthographicCamera) viewport.getCamera()).position.set(player.getX() + 100, player.getY() + 70, 0f);
+
+    }
+
+    private void win(){
+
+    }
+    private void die(){
 
     }
 
