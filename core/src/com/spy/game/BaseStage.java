@@ -3,6 +3,7 @@ package com.spy.game;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.utils.viewport.FitViewport;
@@ -90,6 +91,8 @@ public class BaseStage extends ApplicationAdapter {
         initGUI();
 
         addScriptToChildOfRoot();
+
+
 
         gameOverScene = new GameOverScene();
         root.getChild("gameover").addScript(gameOverScene);
@@ -368,7 +371,9 @@ public class BaseStage extends ApplicationAdapter {
             gameOverScene.transformComponent.x = player.getX()+10;
             gameOverScene.transformComponent.y = player.getY()+10;
         }
-
+        if(player.transformComponent.y <-2080){
+            die();
+        }
 
     }
     protected void detectPlayerCollisCom() throws IOException {
@@ -537,12 +542,14 @@ public class BaseStage extends ApplicationAdapter {
             winScene.transformComponent.x = player.getX()+100;
             winScene.transformComponent.y = player.getY()+70;
         saveFileIO.saveScore((int)currentTime);
+        player.transformComponent.disableTransform();
 
     }
     private void die(){
        isDie = true;
             gameOverScene.transformComponent.x = player.getX()+100;
             gameOverScene.transformComponent.y = player.getY()+70;
+        player.transformComponent.disableTransform();
 
 
     }

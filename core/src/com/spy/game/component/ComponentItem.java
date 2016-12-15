@@ -24,7 +24,7 @@ public class ComponentItem extends ComponentBox {
         if (id == 0) {
             this.timeToRun = 10;
         } else if (id == 1) {
-            this.timeToRun = 10;
+            this.timeToRun = 15;
         } else if (id == 2) {
             this.timeToRun = 10;
         }
