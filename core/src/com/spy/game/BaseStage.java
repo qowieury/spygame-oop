@@ -63,14 +63,14 @@ public class BaseStage extends ApplicationAdapter {
 
     @Override
     public void create() {
-        /*try {
+        try {
             saveFileIO = new SaveFileIO();
         }catch (IOException ex){
             throw new RuntimeException();
 
 
         }
-*/
+
 
         loadSceneAndViewport();
 
@@ -253,63 +253,63 @@ public class BaseStage extends ApplicationAdapter {
 
     protected void createEnemy() {
 
-        enemy.add(new Enemy(465, 755, sceneLoader.world));
-        enemy.add(new Enemy(1180, 1260, sceneLoader.world));
-        enemy.add(new Enemy(1050, 1128, sceneLoader.world));
-        enemy.add(new Enemy(1085, 1161, sceneLoader.world));
-        enemy.add(new Enemy(1000, 1360, sceneLoader.world));
-        enemy.add(new Enemy(1630, 1700, sceneLoader.world));
-        enemy.add(new Enemy(1380, 1770, sceneLoader.world));
-        enemy.add(new Enemy(2027, 2092, sceneLoader.world));
-        enemy.add(new Enemy(2400, 2530, sceneLoader.world));
-        enemy.add(new Enemy(3200, 4600, sceneLoader.world));
-        enemy.add(new Enemy(3107, 3195, sceneLoader.world));
-        enemy.add(new Enemy(2061, 3083, sceneLoader.world));
+        enemy.add(new Enemy(465, 755, sceneLoader.world));//0
+        enemy.add(new Enemy(1185, 1250, sceneLoader.world));//1
+        enemy.add(new Enemy(1055, 1120, sceneLoader.world));//2
+        enemy.add(new Enemy(1090, 1155, sceneLoader.world));//3
+        enemy.add(new Enemy(990, 1370, sceneLoader.world));//4
+        enemy.add(new Enemy(1640, 1705, sceneLoader.world));//5
+        enemy.add(new Enemy(1690, 1760, sceneLoader.world));//6
+        enemy.add(new Enemy(2027, 2092, sceneLoader.world));//7
+        enemy.add(new Enemy(3300, 3680, sceneLoader.world));//8
+        enemy.add(new Enemy(3200, 4600, sceneLoader.world));//9
+        enemy.add(new Enemy(3078, 3142, sceneLoader.world));//10
+        enemy.add(new Enemy(2840, 3202, sceneLoader.world));//11
         //-------------------------end stage1----------------
 
-        enemy.add(new Enemy(7406, 7583, sceneLoader.world));
-        enemy.add(new Enemy(7618, 7964, sceneLoader.world));
-        enemy.add(new Enemy(8289, 8366, sceneLoader.world));
-        enemy.add(new Enemy(8186, 8258, sceneLoader.world));
-        enemy.add(new Enemy(8094, 8166, sceneLoader.world));
-        enemy.add(new Enemy(8003, 8078, sceneLoader.world));
-        enemy.add(new Enemy(7918, 7990, sceneLoader.world));
-        enemy.add(new Enemy(8440, 8549, sceneLoader.world));
-        enemy.add(new Enemy(8549, 8668, sceneLoader.world));
-        enemy.add(new Enemy(8668, 8773, sceneLoader.world));
-        enemy.add(new Enemy(8773, 8870, sceneLoader.world));///-----
-        enemy.add(new Enemy(8870, 8980, sceneLoader.world));
+        enemy.add(new Enemy(7417, 7570, sceneLoader.world));//12
+        enemy.add(new Enemy(7618, 7950, sceneLoader.world));////13
+        enemy.add(new Enemy(8290, 8360, sceneLoader.world));//14
+        enemy.add(new Enemy(8186, 8255, sceneLoader.world));//15
+        enemy.add(new Enemy(8096, 8156, sceneLoader.world));//16
+        enemy.add(new Enemy(8005, 8073, sceneLoader.world));//17
+        enemy.add(new Enemy(7949, 7964, sceneLoader.world));//18
+        enemy.add(new Enemy(8440, 8549, sceneLoader.world));//19
+        enemy.add(new Enemy(8549, 8668, sceneLoader.world));//20
+        enemy.add(new Enemy(8668, 8773, sceneLoader.world));//21
+        enemy.add(new Enemy(8773, 8870, sceneLoader.world));///-----22
+        enemy.add(new Enemy(8870, 8980, sceneLoader.world));//23
 
-        enemy.add(new Enemy(8980, 9082, sceneLoader.world));
-        enemy.add(new Enemy(9082, 9159, sceneLoader.world));
-        enemy.add(new Enemy(9159, 9257, sceneLoader.world));
-        enemy.add(new Enemy(9400, 9600, sceneLoader.world));
-        enemy.add(new Enemy(9913, 10035, sceneLoader.world));
-        enemy.add(new Enemy(10630, 10800, sceneLoader.world));
-        enemy.add(new Enemy(11415, 11589, sceneLoader.world));
+        enemy.add(new Enemy(8980, 9082, sceneLoader.world));//24
+        enemy.add(new Enemy(9082, 9159, sceneLoader.world));//25
+        enemy.add(new Enemy(9159, 9257, sceneLoader.world));//26
+        enemy.add(new Enemy(9400, 9600, sceneLoader.world));//27
+        enemy.add(new Enemy(9919, 10035, sceneLoader.world));//28
+        enemy.add(new Enemy(10630, 10800, sceneLoader.world));//29
+        enemy.add(new Enemy(11415, 11589, sceneLoader.world));//30
 
-        enemy.add(new Enemy(12128, 12447, sceneLoader.world));
-        enemy.add(new Enemy(12525, 12720, sceneLoader.world));
-        enemy.add(new Enemy(13123, 13241, sceneLoader.world));
+        enemy.add(new Enemy(12128, 12447, sceneLoader.world));//31
+        enemy.add(new Enemy(12525, 12720, sceneLoader.world));//32
+        enemy.add(new Enemy(13123, 13241, sceneLoader.world));//33
         //---------------------end stage2--------------------
 
 
-        enemy.add(new Enemy(16022, 16210, sceneLoader.world));
-        enemy.add(new Enemy(15656, 15725, sceneLoader.world));
-        enemy.add(new Enemy(15598, 15682, sceneLoader.world));
-        enemy.add(new Enemy(15475, 15584, sceneLoader.world));
-        enemy.add(new Enemy(15615, 15773, sceneLoader.world));
-        enemy.add(new Enemy(15657, 15726, sceneLoader.world));
-        enemy.add(new Enemy(15487, 15580, sceneLoader.world));
-        enemy.add(new Enemy(16407, 15580, sceneLoader.world));
-        enemy.add(new Enemy(16407, 16637, sceneLoader.world));
-        enemy.add(new Enemy(16899, 167650, sceneLoader.world));
-        enemy.add(new Enemy(16785, 16919, sceneLoader.world));///-----
-        enemy.add(new Enemy(18440, 18574, sceneLoader.world));
+        enemy.add(new Enemy(16022, 16210, sceneLoader.world));//34
+        enemy.add(new Enemy(15656, 15725, sceneLoader.world));//35
+        enemy.add(new Enemy(15598, 15682, sceneLoader.world));//36
+        enemy.add(new Enemy(15475, 15584, sceneLoader.world));//37
+        enemy.add(new Enemy(15615, 15773, sceneLoader.world));//38
+        enemy.add(new Enemy(15657, 15726, sceneLoader.world));//39
+        enemy.add(new Enemy(15487, 15580, sceneLoader.world));//40
+        enemy.add(new Enemy(16407, 15580, sceneLoader.world));//41
+        enemy.add(new Enemy(16407, 16637, sceneLoader.world));//42
+        enemy.add(new Enemy(16899, 167650, sceneLoader.world));//43
+        enemy.add(new Enemy(16785, 16919, sceneLoader.world));///-----44
+        enemy.add(new Enemy(18440, 18574, sceneLoader.world));//45
 
-        enemy.add(new Enemy(18224, 18322, sceneLoader.world));
-        enemy.add(new Enemy(17188, 17499, sceneLoader.world));
-        //enemy.add(new Enemy(15580, 15778, sceneLoader.world));
+        enemy.add(new Enemy(18224, 18322, sceneLoader.world));//46
+        enemy.add(new Enemy(17188, 17499, sceneLoader.world));//47
+        //enemy.add(new Enemy(15580, 15778, sceneLoader.world));//48
         //---------------------end stage3--------------------
 
 
@@ -343,7 +343,11 @@ public class BaseStage extends ApplicationAdapter {
         detectBoxCollisBase();
         detectBoxCollisWall();
 
-        detectPlayerCollisCom();
+        try {
+            detectPlayerCollisCom();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         if(isStarted) {
             if(!isDie && !isWin) {
@@ -367,7 +371,7 @@ public class BaseStage extends ApplicationAdapter {
 
 
     }
-    protected void detectPlayerCollisCom(){
+    protected void detectPlayerCollisCom() throws IOException {
         if (player.getPolygon() != null) {
             for (int i = 0; i < com.size(); i++) {
                 if (com.get(i).getPolygon() != null) {
@@ -528,10 +532,11 @@ public class BaseStage extends ApplicationAdapter {
 
     }
 
-    private void win(){
+    private void win() throws IOException {
         isWin = true;
             winScene.transformComponent.x = player.getX()+100;
             winScene.transformComponent.y = player.getY()+70;
+        saveFileIO.saveScore((int)currentTime);
 
     }
     private void die(){
