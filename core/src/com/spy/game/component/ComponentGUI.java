@@ -31,7 +31,7 @@ public class ComponentGUI extends Player {
 
         transformComponent = ComponentRetriever.get(entity, TransformComponent.class);
 
-        //spriterComponent = ComponentRetriever.get(entity,SpriterComponent.class);
+        spriterComponent = ComponentRetriever.get(entity,SpriterComponent.class);
 
 
     }
@@ -46,13 +46,33 @@ public class ComponentGUI extends Player {
            int xStart = 190;
            if(ID == 0){
                transformComponent.x = player.getX()+xStart;
+               if(player.item.get(0).isHave){
+                   spriterComponent.player.setAnimation("have");
+               }else{
+                   spriterComponent.player.setAnimation("nothave");
+               }
            }
            if(ID == 1){
-               transformComponent.x = player.getX()+xStart+30;
+               transformComponent.x = player.getX()+xStart+60;
+               if(player.item.get(1).isHave){
+                   spriterComponent.player.setAnimation("have");
+               }else{
+                   spriterComponent.player.setAnimation("nothave");
+               }
            }
            if(ID == 2){
-               transformComponent.x = player.getX()+xStart+60;
+               transformComponent.x = player.getX()+xStart+120;
+               if(player.item.get(2).isHave){
+                   spriterComponent.player.setAnimation("have");
+               }else{
+                   spriterComponent.player.setAnimation("nothave");
+               }
            }
+
+
+
+
+
        }
 
     }

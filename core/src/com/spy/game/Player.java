@@ -50,7 +50,7 @@ public class Player implements IScript {
     protected float jumpSpeed = 200f;
     protected boolean isJumping;
 
-    private ArrayList<ComponentItem> item =new ArrayList<ComponentItem>();
+    public ArrayList<ComponentItem> item =new ArrayList<ComponentItem>();
     public boolean isHiding =false;
 
     public Player() {
@@ -103,11 +103,13 @@ public class Player implements IScript {
             speed.x = 160;
             item.get(0).ranTime();
 
+
         }else{
             speed.x = 80;
         }
         if(item.get(1).isActive){ //high jump
             this.jumpSpeed = 350f;
+
             item.get(1).ranTime();
         }else{
             this.jumpSpeed = 200f;
@@ -223,6 +225,9 @@ public class Player implements IScript {
                 item.get(2).use();
             }
         }
+    }
+    public int itemToGUI(int id){
+        return id;
     }
 
     protected void walkLeft(float delta) {

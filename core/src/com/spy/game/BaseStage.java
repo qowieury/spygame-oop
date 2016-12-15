@@ -56,7 +56,9 @@ public class BaseStage extends ApplicationAdapter {
     private SaveFileIO saveFileIO;
 
     private GameOverScene gameOverScene;
+    private boolean isDie = false;
     private WinScene winScene;
+    private boolean isWin = false;
 
 
     @Override
@@ -153,7 +155,7 @@ public class BaseStage extends ApplicationAdapter {
         }
 
         for (int i = 0; i < count; i++) {
-            //System.out.println("com "+i);
+            System.out.println("com "+i);
             root.getChild("com" + i).addScript(com.get(i));
         }
 
@@ -183,7 +185,7 @@ public class BaseStage extends ApplicationAdapter {
         }
 
         for (int i = 0; i < boxCount; i++) {
-            //System.out.println("box "+i);
+            System.out.println("box "+i);
             root.getChild("box" + i).addScript(box.get(i));
         }
     }
@@ -206,7 +208,7 @@ public class BaseStage extends ApplicationAdapter {
     }
 
         for (int i = 0; i < doorCount; i++) {
-            //System.out.println("door "+i);
+            System.out.println("door "+i);
             root.getChild("door" + i).addScript(door.get(i));
         }
 
@@ -219,7 +221,7 @@ public class BaseStage extends ApplicationAdapter {
         }
 
         for (int i = 0; i < floorCount; i++) {
-            //System.out.println("floor "+i);
+            System.out.println("floor "+i);
             root.getChild("floor" + i).addScript(floor.get(i));
         }
 
@@ -232,7 +234,7 @@ public class BaseStage extends ApplicationAdapter {
         }
 
         for (int i = 0; i < wallCount; i++) {
-           //System.out.println("wall "+i);
+           System.out.println("wall "+i);
             root.getChild("wall" + i).addScript(wall.get(i));
         }
 
@@ -344,12 +346,23 @@ public class BaseStage extends ApplicationAdapter {
         detectPlayerCollisCom();
 
         if(isStarted) {
-            currentTime = currentTime + Gdx.graphics.getDeltaTime();
-            System.out.println(currentTime);
+            if(!isDie && !isWin) {
+                currentTime = currentTime + Gdx.graphics.getDeltaTime();
+                System.out.println(currentTime);
+            }
         }else{
             if(Gdx.input.isKeyPressed(Input.Keys.W) ||Gdx.input.isKeyPressed(Input.Keys.A) ||Gdx.input.isKeyPressed(Input.Keys.S) ||Gdx.input.isKeyPressed(Input.Keys.D) ){
                 isStarted = true;
             }
+        }
+
+        if(isWin){
+            winScene.transformComponent.x = player.getX()+10;
+            winScene.transformComponent.y = player.getY()+10;
+        }
+        if(isDie){
+            gameOverScene.transformComponent.x = player.getX()+10;
+            gameOverScene.transformComponent.y = player.getY()+10;
         }
 
 
@@ -359,7 +372,7 @@ public class BaseStage extends ApplicationAdapter {
             for (int i = 0; i < com.size(); i++) {
                 if (com.get(i).getPolygon() != null) {
                     if (collisionListener.isCollision(player.getPolygon(), com.get(i).getPolygon())) {
-                        System.out.println("player and com" + i);
+                        //System.out.println("player and com" + i);
                         if(playerCurrentStage == 1 ){
                             playerCurrentStage++;
                             player.transformComponent.x = 7200;
@@ -388,7 +401,7 @@ public class BaseStage extends ApplicationAdapter {
             for (int i = 0; i < item.size(); i++) {
                 if (item.get(i).getPolygon() != null) {
                     if (collisionListener.isCollision(player.getPolygon(), item.get(i).getPolygon())) {
-                        System.out.println("player and item" + i);
+                        //System.out.println("player and item" + i);
                         if(player.collectItem(item.get(i))){
                             item.get(i).psudoDelete();
                         }
@@ -437,7 +450,7 @@ public class BaseStage extends ApplicationAdapter {
             for (int i = 0; i < door.size(); i++) {
                 if (door.get(i).getPolygon() != null) {
                     if (collisionListener.isCollision(player.getPolygon(), door.get(i).getPolygon())) {
-                        System.out.println("player and door" + i);
+                       // System.out.println("player and door" + i);
                         player.contactWall(door.get(i).getPolygon());
                     }
                 }
@@ -451,7 +464,7 @@ public class BaseStage extends ApplicationAdapter {
             for (int j=0;j<wall.size();j++){
                 if(collisionListener.isCollision(box.get(i).getPolygon(),wall.get(j).getPolygon())){
                     box.get(i).contactWall(wall.get(j).getPolygon());
-                    System.out.println("box and wall");
+                   // System.out.println("box and wall");
                 }
             }
         }
@@ -462,7 +475,7 @@ public class BaseStage extends ApplicationAdapter {
             for (int i = 0; i < box.size(); i++) {
                 if (box.get(i).getPolygon() != null) {
                     if (collisionListener.isCollision(player.getPolygon(), box.get(i).getPolygon())) {
-                        System.out.println("player and box" + i);
+                        //System.out.println("player and box" + i);
                         box.get(i).contactPlayer(player.getPolygon());
                         player.standOnBox(box.get(i));
                     }
@@ -477,7 +490,7 @@ public class BaseStage extends ApplicationAdapter {
             for (int i = 0; i < wall.size(); i++) {
                 if (wall.get(i).getPolygon() != null) {
                     if (collisionListener.isCollision(player.getPolygon(), wall.get(i).getPolygon())) {
-                        System.out.println("player and wall" + i); ////////////////
+                        //System.out.println("player and wall" + i); ////////////////
                         player.contactWall(wall.get(i).getPolygon());
                     }
                 }
@@ -491,7 +504,8 @@ public class BaseStage extends ApplicationAdapter {
                 if (enemy.get(i).getPolygon() != null) {
                     if (collisionListener.isCollision(player.getPolygon(), enemy.get(i).getPolygon())) {
                         if(!player.isHiding){
-                            System.out.println("player and enemy " + i);
+                            //System.out.println("player and enemy " + i);
+
                             die();
                         }
                     }
@@ -515,16 +529,16 @@ public class BaseStage extends ApplicationAdapter {
     }
 
     private void win(){
-        while (true){
+        isWin = true;
             winScene.transformComponent.x = player.getX()+100;
             winScene.transformComponent.y = player.getY()+70;
-        }
+
     }
     private void die(){
-        while (true){
+       isDie = true;
             gameOverScene.transformComponent.x = player.getX()+100;
             gameOverScene.transformComponent.y = player.getY()+70;
-        }
+
 
     }
 
