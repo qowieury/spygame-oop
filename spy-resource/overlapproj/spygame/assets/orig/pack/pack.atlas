@@ -6,28 +6,28 @@ filter: Linear,Linear
 repeat: none
 background1
   rotate: false
-  xy: 2, 1232
+  xy: 2, 1332
   size: 1400, 700
   orig: 1400, 700
   offset: 0, 0
   index: -1
 backgroundblue
   rotate: false
-  xy: 2, 530
+  xy: 2, 630
   size: 1400, 700
   orig: 1400, 700
   offset: 0, 0
   index: -1
 base
   rotate: false
-  xy: 1280, 336
+  xy: 396, 114
   size: 110, 20
   orig: 110, 20
   offset: 0, 0
   index: -1
 bigbox
   rotate: false
-  xy: 1180, 84
+  xy: 1307, 256
   size: 90, 200
   split: 0, 0, 69, 81
   orig: 90, 200
@@ -35,7 +35,7 @@ bigbox
   index: -1
 box
   rotate: false
-  xy: 998, 104
+  xy: 544, 111
   size: 180, 180
   split: 0, 0, 0, 0
   orig: 180, 180
@@ -43,85 +43,92 @@ box
   index: -1
 commmm
   rotate: false
-  xy: 1750, 422
+  xy: 396, 62
   size: 90, 50
   orig: 90, 50
   offset: 0, 0
   index: -1
 door
   rotate: false
-  xy: 2, 46
+  xy: 1778, 1722
   size: 40, 310
   orig: 40, 310
   offset: 0, 0
   index: -1
 enemy
   rotate: false
-  xy: 1110, 42
+  xy: 114, 2
   size: 60, 60
   orig: 60, 60
   offset: 0, 0
   index: -1
 floor
   rotate: false
-  xy: 1750, 400
+  xy: 2, 12
   size: 50, 20
   split: 20, 22, 11, 5
   orig: 50, 20
   offset: 0, 0
   index: -1
+gameoveer
+  rotate: false
+  xy: 2, 136
+  size: 540, 320
+  orig: 540, 320
+  offset: 0, 0
+  index: -1
 item-hide
   rotate: false
-  xy: 1638, 474
+  xy: 238, 6
   size: 56, 56
   orig: 56, 56
   offset: 0, 0
   index: -1
 item-jump
   rotate: false
-  xy: 1696, 474
+  xy: 296, 6
   size: 56, 56
   orig: 56, 56
   offset: 0, 0
   index: -1
 item-run
   rotate: false
-  xy: 1754, 474
+  xy: 354, 4
   size: 56, 56
   orig: 56, 56
   offset: 0, 0
   index: -1
 longbox
   rotate: false
-  xy: 1272, 93
+  xy: 726, 184
   size: 560, 70
   orig: 560, 70
   offset: 0, 0
   index: -1
 longwall
   rotate: false
-  xy: 1778, 1412
+  xy: 1778, 1200
   size: 30, 520
   orig: 30, 520
   offset: 0, 0
   index: -1
 newfloor
   rotate: false
-  xy: 2, 358
+  xy: 2, 458
   size: 1400, 170
   orig: 1400, 170
   offset: 0, 0
   index: -1
 player
   rotate: false
-  xy: 1576, 470
+  xy: 176, 2
   size: 60, 60
   orig: 60, 60
   offset: 0, 0
   index: -1
 shortbox
   rotate: false
-  xy: 998, 286
+  xy: 114, 64
   size: 280, 70
   split: 0, 0, 0, 0
   orig: 280, 70
@@ -129,77 +136,77 @@ shortbox
   index: -1
 shortbox
   rotate: false
-  xy: 998, 286
+  xy: 114, 64
   size: 280, 70
   orig: 280, 70
   offset: 0, 0
   index: -1
 smallbox
   rotate: false
-  xy: 998, 2
+  xy: 2, 34
   size: 110, 100
   orig: 110, 100
   offset: 0, 0
   index: -1
-startA
-  rotate: false
-  xy: 44, 69
-  size: 952, 287
-  orig: 952, 287
-  offset: 0, 0
-  index: -1
 startB
   rotate: false
-  xy: 1280, 165
+  xy: 544, 293
   size: 761, 163
   orig: 761, 163
   offset: 0, 0
   index: -1
 testItem0
   rotate: false
-  xy: 1638, 416
+  xy: 488, 56
   size: 54, 56
   orig: 54, 56
   offset: 0, 0
   index: -1
 testItem1
   rotate: false
-  xy: 1576, 412
+  xy: 412, 4
   size: 54, 56
   orig: 54, 56
   offset: 0, 0
   index: -1
 testItem2
   rotate: false
-  xy: 1694, 416
+  xy: 1288, 198
   size: 54, 56
   orig: 54, 56
   offset: 0, 0
   index: -1
 wallleft
   rotate: false
-  xy: 1404, 330
+  xy: 1404, 430
   size: 170, 1400
   orig: 170, 1400
   offset: 0, 0
   index: -1
 wallright
   rotate: false
-  xy: 1606, 532
+  xy: 1606, 632
   size: 170, 1400
   orig: 170, 1400
   offset: 0, 0
   index: -1
 wasd
   rotate: false
-  xy: 1404, 1732
+  xy: 1404, 1832
   size: 200, 200
   orig: 200, 200
   offset: 0, 0
   index: -1
+win
+  rotate: false
+  xy: 1399, 108
+  size: 540, 320
+  orig: 540, 320
+  offset: 0, 0
+  index: -1
 
 pack2.png
-size: 1024,2048
+size: 2048,2048
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
@@ -209,6 +216,13 @@ SaraFullSheet
   size: 832, 1344
   split: 0, 263, 646, 568
   orig: 832, 1344
+  offset: 0, 0
+  index: -1
+startA
+  rotate: false
+  xy: 836, 1059
+  size: 952, 287
+  orig: 952, 287
   offset: 0, 0
   index: -1
 

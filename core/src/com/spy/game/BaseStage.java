@@ -55,6 +55,9 @@ public class BaseStage extends ApplicationAdapter {
 
     private SaveFileIO saveFileIO;
 
+    private GameOverScene gameOverScene;
+    private WinScene winScene;
+
 
     @Override
     public void create() {
@@ -85,6 +88,12 @@ public class BaseStage extends ApplicationAdapter {
         initGUI();
 
         addScriptToChildOfRoot();
+
+        gameOverScene = new GameOverScene();
+        root.getChild("gameover").addScript(gameOverScene);
+        winScene = new WinScene();
+        root.getChild("youwin").addScript(winScene);
+
         //enableTransForm();
 
     }
@@ -506,9 +515,16 @@ public class BaseStage extends ApplicationAdapter {
     }
 
     private void win(){
-
+        while (true){
+            winScene.transformComponent.x = player.getX()+100;
+            winScene.transformComponent.y = player.getY()+70;
+        }
     }
     private void die(){
+        while (true){
+            gameOverScene.transformComponent.x = player.getX()+100;
+            gameOverScene.transformComponent.y = player.getY()+70;
+        }
 
     }
 
