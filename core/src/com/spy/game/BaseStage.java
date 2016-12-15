@@ -4,6 +4,7 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.utils.viewport.FitViewport;
@@ -61,6 +62,8 @@ public class BaseStage extends ApplicationAdapter {
     private WinScene winScene;
     private boolean isWin = false;
 
+    private Sound sound;
+
 
     @Override
     public void create() {
@@ -98,6 +101,9 @@ public class BaseStage extends ApplicationAdapter {
         root.getChild("gameover").addScript(gameOverScene);
         winScene = new WinScene();
         root.getChild("youwin").addScript(winScene);
+
+        sound = Gdx.audio.newSound(Gdx.files.internal("BGM.mp3"));
+        sound.play();
 
         //enableTransForm();
 
