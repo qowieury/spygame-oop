@@ -595,10 +595,11 @@ public class BaseStage extends ApplicationAdapter {
 
     private void win() throws IOException {
         isWin = true;
+        player.transformComponent.disableTransform();
             winScene.transformComponent.x = player.getX()+100;
             winScene.transformComponent.y = player.getY()+70;
         saveFileIO.saveScore((int)currentTime);
-        player.transformComponent.disableTransform();
+
 
     }
     private void die(){
