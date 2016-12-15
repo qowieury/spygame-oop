@@ -390,7 +390,9 @@ public class BaseStage extends ApplicationAdapter {
 
         if(playerCurrentStage ==3){
             try {
+                playerCurrentStage =1;
                 win();
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
