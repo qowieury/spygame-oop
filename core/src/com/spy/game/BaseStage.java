@@ -388,8 +388,18 @@ public class BaseStage extends ApplicationAdapter {
             die();
         }
 
+        if(playerCurrentStage ==3){
+            try {
+                win();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        }
 
     }
+
+
     protected void detectPlayerCollisCom() throws IOException {
         if (player.getPolygon() != null) {
             for (int i = 0; i < com.size(); i++) {
@@ -397,11 +407,11 @@ public class BaseStage extends ApplicationAdapter {
                     if (collisionListener.isCollision(player.getPolygon(), com.get(i).getPolygon())) {
                         //System.out.println("player and com" + i);
                         if(playerCurrentStage == 1 ){
-                            playerCurrentStage++;
+                            playerCurrentStage=2;
                             player.transformComponent.x = 7200;
                             player.transformComponent.y = 100;
                         }else if(playerCurrentStage == 2){
-                            playerCurrentStage++;
+                            playerCurrentStage=3;
                             player.transformComponent.x = 15400;
                             player.transformComponent.y = -400;
 
