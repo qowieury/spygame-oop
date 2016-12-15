@@ -343,6 +343,7 @@ public class BaseStage extends ApplicationAdapter {
 
     @Override
     public void render() {
+
         loadSceneRender();
         cameraFollowPlayer();
         detectPlayerCollisEnemy();
@@ -352,6 +353,11 @@ public class BaseStage extends ApplicationAdapter {
         detectPlayerCollisItem();
         detectBoxCollisBase();
         detectBoxCollisWall();
+        try {
+            warp();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         try {
             detectPlayerCollisCom();
@@ -382,6 +388,7 @@ public class BaseStage extends ApplicationAdapter {
             die();
         }
 
+
     }
     protected void detectPlayerCollisCom() throws IOException {
         if (player.getPolygon() != null) {
@@ -408,6 +415,38 @@ public class BaseStage extends ApplicationAdapter {
                     }
                 }
             }
+        }
+
+    }
+
+    private void warp() throws IOException {
+        if(Gdx.input.isKeyPressed(Input.Keys.I)){
+            goToStage(0);
+        }else if(Gdx.input.isKeyPressed(Input.Keys.O)){
+            goToStage(1);
+        }else if(Gdx.input.isKeyPressed(Input.Keys.P)){
+            goToStage(2);
+        }
+    }
+
+    private void goToStage(int playerCurrentStage) throws IOException {
+        if(playerCurrentStage == 0){
+
+            player.transformComponent.x = 120;
+            player.transformComponent.y = 100;
+        }
+        else if(playerCurrentStage == 1 ){
+            this.playerCurrentStage=1;
+            player.transformComponent.x = 7200;
+            player.transformComponent.y = 100;
+        }else if(playerCurrentStage == 2){
+            this.playerCurrentStage=2;
+            player.transformComponent.x = 15400;
+            player.transformComponent.y = -400;
+
+        }else if(playerCurrentStage ==3){
+            win();
+
         }
 
     }
